@@ -1,0 +1,7 @@
+/* pages/center/note/noteDetail/noteDetail.wxss */
+
+@import "../../../../style/common.wxss";
+
+.detail-con {
+  line-height: 60rpx;
+}

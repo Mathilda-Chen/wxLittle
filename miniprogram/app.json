@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/center/center",
+    "pages/center/note/note",
+    "pages/center/note/noteEdit/noteEdit",
+    "pages/center/note/noteDetail/noteDetail",
+    "pages/center/beauty/beauty",
+    "pages/center/reminder/reminder",
+    "pages/center/woman/woman",
+    "pages/center/diary/diary",
+    "pages/center/interview/interview",
+    "pages/center/question/question",
+    "pages/center/bug/bug",
+    "pages/center/bug/bugEdit/bugEdit",
+    
+    "components/calendar/calendar"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "你的后花园",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#fa7970",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/index_a.png",
+        "selectedIconPath": "/images/index.png"
+      },
+      {
+        "pagePath": "pages/center/center",
+        "text": "我的",
+        "iconPath": "/images/center_a.png",
+        "selectedIconPath": "/images/center.png"
+      }
+    ]
+  }
+}

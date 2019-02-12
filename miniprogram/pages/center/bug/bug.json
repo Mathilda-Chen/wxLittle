@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "bug",
+  "usingComponents": {
+    "calendar": "../../../components/calendar/calendar"
+  }
+}

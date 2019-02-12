@@ -1,0 +1,43 @@
+<!--pages/center/center.wxml-->
+<view class="">
+  <view class='row rel pd-20 user'>
+    <image class="user-img user-spe" src="{{user.avatarUrl}}"></image>
+    <button class="user-img abs login-btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"></button>
+    <view class="column-between pd-20">
+      <text class="normal-dark btm-space">{{user.nickName}}</text>
+      <text class="normal-gray user-text line-1">当风吹过 你的麦穗</text>
+    </view>
+    <view class="abs row note pd-20">
+      <view class="column between note-con" bindtap="toNext" data-next="note">
+        <text class="big-dark">{{num[0]}}</text>
+        <text class="normal-dark">笔记</text>
+      </view>
+      <view class="column between note-con" bindtap="toNext" data-next="beauty">
+        <text class="big-dark">{{num[1]}}</text>
+        <text class="normal-dark">美妆</text>
+      </view>
+      <view class="column between note-con" bindtap="toNext" data-next="reminder">
+        <text class="big-dark">{{num[2]}}</text>
+        <text class="normal-dark">备忘录</text>
+      </view>
+    </view>
+  </view>
+   <view class="column settings">
+    <text class="big-dark settings-title pd-20">我的秘密</text>
+    <view class="row">
+      <view class="column between settings-con pd-20" wx:for="{{diary}}" wx:key="" bindtap="toNext" data-next="{{item.id}}">
+        <image class="settings-img btm-space" src="{{item.img}}"></image>
+       <text class="normal-gray">{{item.txt}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="column settings">
+    <text class="big-dark settings-title pd-20">我的记录</text>
+    <view class="row">
+      <view class="column between settings-con pd-20" wx:for="{{record}}" wx:key="" bindtap="toNext" data-next="{{item.id}}">
+        <image class="settings-img btm-space" src="{{item.img}}"></image>
+       <text class="normal-gray">{{item.txt}}</text>
+      </view>
+    </view>
+  </view>
+</view>

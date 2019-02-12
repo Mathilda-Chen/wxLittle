@@ -1,0 +1,22 @@
+<!--pages/center/bug/bugEdit/bugEdit.wxml-->
+<view class="pd-20">
+  <view class="pd-20 btm-space bg-white br-20">
+    <input class="normal-dark" placeholder="请输入bug所在地方" value="{{info.title}}" disabled="{{editPage}}" auto-focus="true" maxlength="18" bindinput="bindTitle"></input>
+  </view>
+  <view class="pd-20 btm-space bg-white br-20">
+    <textarea class="normal-gray detail-con" placeholder="请描述问题" value="{{info.content}}" disabled="{{editPage}}" bindinput="bindContent" maxlength="100" ></textarea> 
+  </view>
+  <view class="row justify pd-20" bindtap="toHandle" wx:if="{{editPage}}">
+    <image class="handle-img" src="../../../../images/handle_01.png" wx:if="{{info.checked}}"></image>
+    <image class="handle-img" src="../../../../images/handle.png" wx:else></image>
+    <text class="big-dark">{{info.checked?"已解决":"未解决"}}</text>
+  </view>
+  <view wx:if="{{info.checked}}">
+    <view class="pd-20 btm-space bg-white br-20">
+      <textarea class="normal-dark handle-con" placeholder="请描述解决办法" value="{{info.way}}" bindinput="bindWay" maxlength="-1"></textarea> 
+    </view>
+  </view>
+  <view class="edit-btn br-20" wx:if="{{info.checked || !editPage}}" bindtap="toSave">
+    <text class="normal-dark">保存</text>
+  </view>
+</view>

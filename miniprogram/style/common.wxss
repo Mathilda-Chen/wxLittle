@@ -1,0 +1,175 @@
+.rel {
+  position: relative;
+}
+
+.abs {
+  position: absolute;
+}
+
+.sty {
+  position: sticky;
+  top: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  align-items: center;
+}
+
+.between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.around {
+  justify-content: space-around;
+  align-items: center;  
+}
+
+.justify {
+  justify-content: center;
+  align-items: center;
+}
+
+.column-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btm-line {
+  border-bottom: 1rpx solid #f9f9f9;
+}
+
+.line-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 40rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.br-20 {
+  border-radius: 20rpx;
+}
+
+.pd-20 {
+  padding: 20rpx;
+}
+
+.pl-20 {
+  padding-left: 20rpx;
+}
+
+.pt-10 {
+  padding-bottom: 10rpx;
+}
+
+.ptb-10 {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.top-space {
+  margin-top: 10rpx;
+}
+
+.btm-space {
+  margin-bottom: 10rpx;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.bg-pink {
+  background-color: #fa7970;
+}
+
+.bg-gray {
+  background-color: #eeeeee;
+}
+
+.bg-green {
+  background-color: rgb(5, 202, 71);
+}
+
+.big-white {
+  font-size: 34rpx;
+  color: #ffffff;
+}
+
+.normal-white {
+  font-size: 32rpx;
+  color: #ffffff;
+}
+
+.mini-white {
+  font-size: 26rpx;
+  color: #ffffff;
+}
+
+.big-gray {
+  font-size: 34rpx;
+  color: #999999;
+}
+
+.normal-gray {
+  font-size: 32rpx;
+  color: #999999;
+}
+
+.mini-gray {
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.big-dark {
+  font-size: 34rpx;
+  color: #666666;
+}
+
+.normal-dark {
+  font-size: 32rpx;
+  color: #666666;
+}
+
+.mini-dark {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.normal-pink {
+  font-size: 32rpx;
+  color: #fa7970;
+}
+
+.big-white {
+  font-size: 34rpx;
+  color: #ffffff;
+}

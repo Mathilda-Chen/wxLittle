@@ -1,0 +1,39 @@
+<!--pages/center/bug/bug.wxml-->
+<view>
+  <view class="row between bg-white sty top">
+    <image class="pd-20 bg-gray top-img" src="../../../images/calender.png" bindtap="showCalendar"></image>
+    <view class="pd-20" 
+          wx:for="{{topTitle}}" wx:key="" 
+          bindtap="toSearch" data-info="{{item}}" data-index="{{index}}">
+      <text class="{{index==ttIndex?'normal-pink':'normal-dark'}}">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="pd-20">
+    <view class="pd-20 bg-white box" wx:for="{{list}}" wx:key="">
+      <view class="ptb-10 btm-line" bindtap="toDetail" data-info="{{item}}">
+        <view class="row between btm-space">
+          <text class="normal-dark">{{item.title}}</text>
+          <text class="tip-circle {{item.checked?'bg-green':'bg-pink'}}"></text>
+        </view>
+        <text class="mini-gray line-2">{{item.content}}</text>
+      </view>
+      <view class="ptb-10 btm-line" wx:if="{{item.checked}}">
+        <view class="row between ptb-10" bindtap="toOpen" data-index="{{index}}">
+          <text class="normal-dark">解决办法</text>
+          <image class="row-img {{index == opIndex?'rot-start':'rot-end'}}" src="../../../images/rightArr.png"></image>
+        </view>
+        <text class="mini-gray" wx:if="{{index == opIndex}}">{{item.way}}</text>
+      </view>
+      <view class="column">
+        <text class="mini-dark btm-space top-space">开始时间：{{item.create_time}}</text>
+        <text class="mini-dark" wx:if="{{item.checked}}">结束时间：{{item.end_time}}</text>
+      </view>
+    </view>
+    <text class="add-btn abs" bindtap="toEdit">+</text>
+  </view>
+  <calendar id="calendar"
+        bind:cancelEvent="_cancelEvent"
+        bind:confirmEvent="_confirmEvent"
+  />
+</view>
