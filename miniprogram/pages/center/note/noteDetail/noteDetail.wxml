@@ -1,0 +1,7 @@
+<!--pages/center/note/noteDetail/noteDetail.wxml-->
+<view class="detail">
+  <view class="pd-20 column bg-white">
+    <text class="pd-20 btm-10 btm-line big-dark">{{info.title}}</text>
+    <text class="pd-20 normal-gray detail-con">{{info.content}}</text>
+  </view>
+</view>

@@ -1,0 +1,70 @@
+/* pages/center/center.wxss */
+
+@import "../../style/common.wxss";
+
+page {
+  background-color: #ffffff;
+}
+
+.user {
+  height: 150rpx;
+  padding-bottom: 100rpx;
+  margin-bottom: 120rpx;
+  background: linear-gradient(violet, yellow);
+}
+
+.user-img {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  background-color: #eeeeee;
+}
+
+.user-spe {
+  /* z-index: 100; */
+}
+
+.login-btn {
+  top: 20rpx;
+  left: 20rpx;
+  opacity: 0;
+}
+
+.user-txt {
+  width: 50rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}
+
+.note {
+  width: 660rpx;
+  height: 110rpx;
+  bottom: -75rpx;
+  left: 25rpx;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 30rpx;
+}
+
+.note-con {
+  flex: 1;
+}
+
+.settings {
+  margin: 20rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #cccccc;
+}
+
+.settings-title {
+  border-bottom: 1rpx solid #cccccc;
+}
+
+.settings-con {
+  flex: 1;
+  margin-top: 20rpx;
+}
+
+.settings-img {
+  width: 50rpx;
+  height: 50rpx;
+}

@@ -1,0 +1,10 @@
+<!--pages/center/note/noteEdit/noteEdit.wxml-->
+<view class="container column bg-white">
+  <view class="pd-20 btm-space btm-line">
+    <input class="big-dark" placeholder="请输入标题" value="{{info.title}}" bindinput="bindInput" focus="true"></input>
+  </view>
+  <view class="row pd-20">
+    <textarea class="text normal-gray detail-con" placeholder="请输入内容" value="{{info.content}}" bindinput="bindTextarea" maxlength="-1" ></textarea> 
+  </view>
+  <text class="edit-btn" bindtap="toSave">保存</text>
+</view>

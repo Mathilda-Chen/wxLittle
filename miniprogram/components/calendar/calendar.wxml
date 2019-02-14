@@ -1,0 +1,37 @@
+<!--components/calendar/calendar.wxml-->
+<view class="mask row justify" catchtouchmove="_preventTouchMove" hidden="{{!isShow}}">
+  <view class="box">
+    <!-- 日期选择 -->
+    <view class="row justify pd-20">
+      <view class="column justify">
+        <image class="cal-btn" src="../../images/topArr.png" wx-if="{{yearIndex>=1}}"  catchtap="_yearUp"></image>
+        <text class="cal-btn" wx-if="{{yearIndex==0}}"></text>
+        <view class="rel box-little">
+          <view class="column center little-item" style="transform: translateY(-{{yearIndex*100}}rpx)">
+            <text class="num-txt" wx:for="{{year}}" wx:key="">{{item}}</text>
+          </view>
+        </view>
+        <image class="cal-btn" src="../../images/btmArr.png" wx-if="{{yearIndex<=2}}" catchtap="_yearDown"></image>
+        <text class="cal-btn" wx-if="{{yearIndex==3}}"></text>
+      </view>
+      <view class="box-text">年</view>
+      <view class="column justify">
+        <image class="cal-btn" src="../../images/topArr.png" wx-if="{{monthIndex>=1}}"  catchtap="_monthUp"></image>
+        <text class="cal-btn" wx-if="{{monthIndex==0}}"></text>
+        <view class="rel box-little">
+          <view class="column center little-item" style="transform: translateY(-{{monthIndex*100}}rpx)">
+            <text class="num-txt" wx:for="{{month}}" wx:key="">{{item}}</text>
+          </view>
+        </view>
+        <image class="cal-btn" src="../../images/btmArr.png" wx-if="{{monthIndex<=10}}" catchtap="_monthDown"></image>
+        <text class="cal-btn" wx-if="{{monthIndex==11}}"></text>
+      </view>
+      <view class="box-text">月</view>
+    </view>
+    <!-- 按钮 -->
+    <view class="row around">
+      <text class="confirm-btn bg-gray" catchtap="_cancelEvent">取消</text>
+      <text class="confirm-btn bg-white" catchtap="_confirmEvent">确认</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,89 @@
+/* pages/center/note/note.wxss */
+
+@import "../../../style/common.wxss";
+
+.box {
+  width: 750rpx;
+  height: 170rpx;
+
+}
+.box-item {
+  box-sizing: border-box;
+  width: 750rpx;
+  height: 170rpx;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  transition: left 0.3s ease-in-out;
+}
+
+.btn {
+  top: 0;
+  right: 0;
+}
+
+.edit-btn {
+  background-color: #1aad19;
+  width: 100rpx;
+  height: 170rpx;
+  color: #ffffff;
+  text-align: center;
+  line-height: 170rpx;
+  font-size: 30rpx;
+}
+
+.edit-btn:active {
+  background-color: rgba(17, 95, 15, 0.24);
+}
+
+.del-btn {
+  width: 100rpx;
+  height: 170rpx;
+  background-color: #e64340;
+  color: #ffffff;
+  text-align: center;
+  line-height: 170rpx;
+  font-size: 30rpx;
+}
+
+.del-btn:active {
+  background-color: #dd7b7b;
+}
+
+.mask {
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 170rpx;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  
+}
+
+.mask-item {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.add-btn {
+  position: fixed;
+  right: 30rpx;
+  bottom: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 3px 3px 3px #d4d2d2;
+  font-size: 70rpx;
+  color: #000000;
+  text-align: center;
+  line-height: 100rpx;
+  z-index: 100;
+}
+
+.add-btn:active {
+  color: #ffffff;
+  background-color: #fa7970;
+}

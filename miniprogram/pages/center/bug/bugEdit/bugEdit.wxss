@@ -1,0 +1,33 @@
+/* pages/center/bug/bugEdit/bugEdit.wxss */
+
+@import "../../../../style/common.wxss";
+
+.detail-con {
+  width: 680rpx;
+  height: 250rpx;
+  line-height: 50rpx;
+}
+
+.handle-img {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.handle-con {
+  width: 690rpx;
+  height: 300rpx;
+  line-height: 50rpx;
+}
+
+.edit-btn {
+  width: 710rpx;
+  height: 100rpx;
+  margin-top: 30rpx;
+  background-color: #ffffff;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.edit-btn:active {
+  background-color: #fa7970;
+}

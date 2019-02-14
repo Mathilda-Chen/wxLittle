@@ -1,0 +1,23 @@
+<!--pages/center/note/note.wxml-->
+<view class="index">
+  <view class="box btm-space rel" wx:for="{{list}}" wx:key="" wx:if="{{list}}" >
+    <view class="box-item column pd-20 bg-white abs" 
+      style="right:{{item.rightLen}}rpx"
+      bindlongpress="toSet"
+      bindtap="toDetail" data-info="{{item}}" data-index="{{index}}">
+      <!-- bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" -->
+        <text class="btm-space big-dark line-1">{{item.title}}</text>
+        <text class="normal-gray line-2">{{item.content}}</text>
+    </view>
+    <view class="row abs btn">
+        <text class="edit-btn" bindtap="toEdit" data-index="{{index}}" data-info="{{item}}">编辑</text>
+        <text class="del-btn" bindtap="toDel" data-index="{{index}}" data-info="{{item}}">删除</text>
+    </view>
+    <view class="row around abs mask" wx:if="{{index == showIndex}}" bindtap="toCloseMask">
+      <text class="row justify mask-item bg-white normal-dark" bindtap="toEdit" data-index="{{index}}" data-info="{{item}}">编辑</text>
+      <text class="row justify mask-item bg-pink normal-white" bindtap="toDel" data-index="{{index}}" data-info="{{item}}">删除</text>
+    </view>
+  </view>
+  <text class="add-btn abs" bindtap="toEdit">+</text>
+</view>
+
