@@ -13,12 +13,16 @@ Page({
     index: -1,
     beIndex: -1,
     startX: "",
+    openAdd: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    this.setData({
+      navH: 150
+    })
     this.getData();
 
   },
@@ -38,46 +42,10 @@ Page({
     //   }
     // })
   },
-  touchStart(e) {
-    var index = e.currentTarget.dataset.index;
-    var beIndex = this.data.beIndex;
-    if(index != beIndex && beIndex != -1) {
-      var list = this.data.info;
-      list[this.data.beIndex].right = 0;
-    }
+  showAdd() {
     this.setData ({
-      startX: e.touches[0].clientX,
-      beIndex: index,
-      index: index
+      addBook: !this.data.addBook
     })
-  },
-  touchMove: function (e) {
-    var moveX = e.touches[0].clientX;
-    var disX = this.data.startX - moveX;
-    var right = 0;
-    if(disX == 0 || disX < 0) {
-      right = 0;
-    }else if (disX > 0){
-      right = disX > maxRight ? maxRight : disX;
-    }
-    var list = this.data.info;
-    list[this.data.index].right = right;
-    this.setData ({
-      info: list
-    })
-  },
-  touchEnd(e) {
-    var endX = e.changedTouches[0].clientX;
-    var disX = this.data.startX - endX;
-    var right = disX > maxRight/2 ? maxRight: 0;
-    var list = this.data.info;
-    list[this.data.index].right = right;
-    this.setData ({
-      info: list,
-    })
-  },
-  toshare(e) {
-
   },
   toDel(e) {
     console.log("删除")

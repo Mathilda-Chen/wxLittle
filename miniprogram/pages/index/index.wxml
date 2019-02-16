@@ -1,39 +1,53 @@
 <!--pages/index/index.wxml-->
-<!-- 筛选 -->
-<!-- <view class="row sel bg-white">
-  <view class="row between sel-item pd-20 right-line">
-    <text class="normal-dark">全部清单</text>
-    <image class="sel-img" src=""></image>
+<view class="info">
+  <!-- 添加账本 -->
+  <view class="row justify info-title" bindtap="showAdd">
+    <text class="normal-dark pr-20">XXX的记账本</text>
+    <image class="title-img"></image>
   </view>
-  <view class="row between sel-item pd-20">
-    <text class="normal-dark">按时间排序</text>
-    <image class="sel-img" src=""></image>
-  </view>
-</view> -->
-<!-- 内容 -->
-<view class="pd-20 bg-white rel {{item.right == 0 ? 'slide-right':'slide-left'}}" style="right:{{item.right}}rpx"
-      wx:for="{{info}}" wx:key="" data-index="{{index}}"
-      bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
   <!-- 详情 -->
-  <view class="row between content" bindtap="toDetail" >
-    <view class="column">
-      <text class="normal-dark">{{item.title}}</text>
-      <view>
-        <text class="mini-gray">{{item.create_time}}</text>
-        <text class="mini-gray pl-20">已完成: 1/4</text>
-      </view>
-    </view>
-    <text class="right-arr"></text>
+  <view class="row center info-detail">
+    <text class="normal-dark detail-txt">2019年/2月</text>
+    <text class="normal-dark detail-txt">收入 8888</text> 
+    <text class="normal-dark detail-txt">支出 666</text>
   </view>
-  <!-- 左滑按钮 -->
-  <view class="row abs slide-btn">
-    <view class="slide-item row justify" bindtap="toShare">
-      <text class="inner-item">分享</text>
+</view>
+<!-- 账本选择/添加 -->
+<view class="abs add-book column" wx:if="{{addBook}}">
+  <view class="book bg-white">
+    <view class="row center btm-line book-detail">
+      <image class="detail-img"></image>
+      <text class="normal-dark pl-20">我的账本</text>
     </view>
-    <view class="slide-item row justify" bindtap="toDel">
-      <text class="inner-item">删除</text>
+    <view class="row center btm-line book-detail">
+      <image class="detail-img"></image>
+      <text class="normal-dark pl-20">我的账本</text>
+    </view>
+    <view class="row center book-detail">
+      <image class="detail-img"></image>
+      <input class="normal-dark pd-20" placeholder="请输入新账本名称"></input>
+    </view>
+    <view class="row center book-btn">
+      <text class="normal-dark bg-gray btn-style" bindtap="showAdd">取消</text>
+      <text class="normal-dark bg-pink btn-style" bindtap="showAdd">确认</text>
     </view>
   </view>
+  <view class="mask" bindtap="showAdd"></view>
+</view>
+<!-- 账单详情 -->
+<view class="row between content btm-line">
+  <text class="normal-dark content-date">02月16日</text>
+  <view class="row center normal-darkcontent-money">
+    <text class="normal-dark pr-20">收入：100</text>
+    <text class="normal-dark">支出：50</text>
+  </view>
+</view>
+<view class="row between record">
+  <view class="row justify">
+    <image class="icon"></image>
+    <text class="normal-dark pl-20">购物</text>
+  </view>
+  <text class="normal-dark">-50</text>
 </view>
 <!-- 添加 -->
 <view class="row justify add-btn">

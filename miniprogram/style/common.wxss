@@ -54,11 +54,11 @@
 }
 
 .right-line {
-  border-right: 1rpx solid #cccccc;
+  border-right: 1rpx solid #eeeeee;
 }
 
 .btm-line {
-  border-bottom: 1rpx solid #cccccc;
+  border-bottom: 1rpx solid #eeeeee;
 }
 
 .line-1 {
@@ -88,6 +88,10 @@
 
 .pl-20 {
   padding-left: 20rpx;
+}
+
+.pr-20 {
+  padding-right: 20rpx;
 }
 
 .pt-10 {

@@ -2,7 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/index/billDetail/billDetail",
-    "pages/mall/mall",
+    "pages/count/count",
     "pages/center/center"
   ],
   "window": {
@@ -17,11 +17,11 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "我的清单"
+        "text": "我的账单"
       },
       {
-        "pagePath": "pages/mall/mall",
-        "text": "如愿商城"
+        "pagePath": "pages/count/count",
+        "text": "图表统计"
       },
       {
         "pagePath": "pages/center/center",

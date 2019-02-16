@@ -1,57 +1,99 @@
 /* pages/index/billDetail/billDetail.wxss */
 @import "../../../style/common.wxss";
 
-.slide-right {
-  transition: right 0.3s linear;
-}
-
-.slide-left {
-  transition: left 1s linear;
-}
-
-.check-box {
-  padding-left: 30rpx;
-}
-
-.del-btn {
-  top: 0;
-  right: -120rpx;
-  width: 120rpx;
-  height: 100%;
-  background-color: red;
-}
-
-.add-item {
-  /* margin-bottom: 200rpx; */
-}
-
-.add-btn {
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 50%;
-  background-color: #000000;
-}
-
-.btn-txt {
-  position: relative;
-  top: -3rpx;
-  font-size: 30rpx;
-  color: #f1f1f1;
-}
-
-.save-btn {
-  /* position: fixed;
-  left: 0;
-  bottom: 0; */
+/* 切换栏 */
+.tab {
   width: 750rpx;
-  padding: 30rpx 0;
-  background-color: #f1f1f1;
 }
 
-.save-txt {
-  width: 720rpx;
-  height: 80rpx;
+.tab-item {
+  width: 375rpx;
   text-align: center;
   line-height: 80rpx;
-  background-color: #26a3d4a2;
+}
+
+/* 输入框 */
+.content {
+  width: 710rpx;
+  height: 120rpx;
+  padding: 0 20rpx;
+}
+
+.content-cate {
+  width: 350rpx;
+}
+
+.cate-img {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #cccccc;
+  border-radius: 50%;
+}
+
+.money {
+  width: 400rpx;
+  text-align: right; 
+}
+
+/* 类别选择 */
+.select {
+  padding: 20rpx 0;
+  background-color: rgba(187, 187, 51, 0.603);
+}
+
+.select-box {
+  flex-wrap: wrap;
+}
+
+.icon {
+  width: 187.5rpx;
+  height: 140rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 备注 */
+.remarks {
+  height: 100rpx;
+  padding: 0 20rpx;
+}
+
+/* 自定义键盘 */
+.keyboard {
+  width: 750rpx;
+  height: 404rpx;
+}
+
+.left {
+  width: 570rpx;
+  flex-wrap: wrap;
+}
+
+.left-item {
+  width: 189rpx;
+  height: 100rpx;
+  border-right: 1rpx solid #eeeeee;
+}
+
+.right {
+  width: 180rpx;
+}
+
+.right-date {
+  height: 100rpx;
+  border-bottom: 1rpx solid #eeeeee;
+}
+
+.data-txt {
+  width: 150rpx;
+  height: 50rpx;
+  border: 1rpx solid #eeeeee;
+}
+
+.right-del {
+  height: 100rpx;
+  border-bottom: 1rpx solid #eeeeee;
+}
+
+.right-confirm {
+  height: 200rpx;
 }

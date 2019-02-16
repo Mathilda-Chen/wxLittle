@@ -14,7 +14,7 @@ function formatDate(timestamp) {
   minute < 10 && (minute = `0${minute}`);
   second < 10 && (second = `0${second}`);
 
-  return `${year}/${month}/${day} ${hour}:${minute}:${second}`
+  return `${year}年${month}月${day}日 ${hour}:${minute}:${second}`
 }
 
 //当前时间戳

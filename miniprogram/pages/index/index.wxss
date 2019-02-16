@@ -1,43 +1,98 @@
 /* pages/index/index.wxss */
 @import "../../style/common.wxss";
 
-/* 筛选 */
-.sel {
+/* 添加账本 */
+.info {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 750rpx;
-  border-top: 1rpx solid #cccccc;
-  border-bottom: 1rpx solid #cccccc;
+  height: 180rpx;
+  background-color: rgb(151, 209, 36);
 }
 
-.sel-item {
-  flex: 1;
+.info-title {
+  padding: 10rpx 0 20rpx 0;
 }
 
-.sel-img {
+.title-img {
   width: 50rpx;
   height: 50rpx;
-  background-color: #eeeeee;
+  background-color: #dddddd;
 }
 
-.slide-right {
-  transition: right 0.3s linear;
+/* 详情 */
+.detail-txt {
+  width: 250rpx;
 }
 
-.slide-left {
-  transition: left 1s linear;
+/* 账本添加 */
+.add-book {
+  top: 180rpx;
+  left: 0;
+  width: 750rpx;
+  height: 100%;
 }
 
-.content {
+.book {
   width: 710rpx;
+  padding: 20rpx;
 }
 
-.right-arr {
-  border-right: 8rpx solid; 
-  border-bottom: 8rpx solid;
-  width: 20rpx; 
-  height: 20rpx;
-  transform: rotate(-45deg);
+.book-detail {
+  padding: 20rpx 0;
 }
 
+.detail-img {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #cccccc;
+}
+
+.book-btn {
+  width: 710rpx;
+  height: 80rpx;
+}
+
+.btn-style {
+  flex: 1;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.mask {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 账单详情 */
+.content {
+  width: 730rpx;
+  padding: 10rpx;
+  margin-top: 180rpx;
+}
+
+.content-date {
+  width: 200rpx;
+}
+
+.content-money {
+  max-width: 550rpx;
+}
+
+.record {
+  width: 710rpx;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eeeeee;
+}
+
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: rgb(17, 222, 230);
+}
+
+/* 添加按钮 */
 .add-btn {
   position: fixed;
   right: 30rpx;
@@ -57,20 +112,3 @@
   color: #f1f1f1;
 }
 
-.slide-btn {
-  width: 240rpx;
-  height: 100%;
-  top: 0;
-  right: -240rpx;
-}
-
-.slide-item {
-  flex: 1;
-  text-align: center;
-  line-height: 100%;
-  background-color: #cccccc;
-}
-
-.inner-item {
-
-}

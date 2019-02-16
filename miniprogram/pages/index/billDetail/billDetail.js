@@ -9,13 +9,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    windowHeight: 1000,
-    title: "",
-    list: [],
-    index: -1,
-    beIndex: -1,
-    startX: "",
-    scrollTop: 0
+    scrollHeight: 440,
+    money: "0.00",
+    tab: ["收入", "支出"],
+    num: [7, 8, 9, 4, 5, 6, 1, 2, 3, "清空", 0, "."],
+    date: "",
+    beIndex: 0,
   },
 
   /**
@@ -31,47 +30,19 @@ Page({
         let ratio = 750 / clientWidth;
         let height = clientHeight * ratio;
         self.setData ({
-          windowHeight: height - 140
+          scrollHeight: height - 80 - 120 - 102 - 404 - 40
         })
       },
     })
+    var time = util.formatDate(util.getTime()).split(" ")[0].substring(5,11)
+    this.setData ({
+      date: time
+    })
   },
-  touchStart(e) {
+  checkTab(e) {
     var index = e.currentTarget.dataset.index;
-    var beIndex = this.data.beIndex;
-    if (index != beIndex && beIndex != -1) {
-      var list = this.data.list;
-      list[this.data.beIndex].right = 0;
-    }
-    this.setData({
-      startX: e.touches[0].clientX,
-      beIndex: index,
-      index: index
-    })
-  },
-  touchMove: function (e) {
-    var moveX = e.touches[0].clientX;
-    var disX = this.data.startX - moveX;
-    var right = 0;
-    if (disX == 0 || disX < 0) {
-      right = 0;
-    } else if (disX > 0) {
-      right = disX > maxRight ? maxRight : disX;
-    }
-    var list = this.data.list;
-    list[this.data.index].right = right;
-    this.setData({
-      list: list
-    })
-  },
-  touchEnd(e) {
-    var endX = e.changedTouches[0].clientX;
-    var disX = this.data.startX - endX;
-    var right = disX > maxRight / 2 ? maxRight : 0;
-    var list = this.data.list;
-    list[this.data.index].right = right;
-    this.setData({
-      list: list,
+    this.setData ({
+      beIndex: index
     })
   },
   bindTitle(e) {
@@ -79,55 +50,64 @@ Page({
       title: e.detail.value
     })
   },
-  bindChecked(e) {
-    var index = e.currentTarget.dataset.index;
-    var checked = this.data.list[index].checked;
-    this.setData ({
-      [`list[${index}].checked`]: !checked
+  inputNum(e) {
+    var num = e.currentTarget.dataset.item,
+     len = this.data.money.length,
+     cur_money = this.data.money == "0.00" ? "" : this.data.money,
+     money = `${cur_money}${num}`,
+     dot = cur_money.indexOf(".") != -1;
+    if(num == "清空") {
+      this.setData ({
+        money: "0.00"
+      })
+      return;
+    }
+    if (len > 20) return;
+    if(dot){
+      var dotLen = cur_money.split(".")[1].length;
+      if (num == "." || dotLen > 1) return;
+    }
+    if (num == "." && !dot && cur_money == "") {
+      money = "0."
+    }
+    this.setData({
+      money: money
     })
   },
-  bindContent(e) {
-    var index = e.currentTarget.dataset.index;
-    this.setData ({
-      [`list[${index}].text`]: e.detail.value
+  numDel() {
+    if (this.data.money == "0.00") return;
+    var len = this.data.money.length;
+    var money;
+    if (len == 1) {
+      money = "0.00"
+    }else if(len > 0) {
+      money = this.data.money.substr(0, len - 1);
+    }
+    this.setData({
+      money: money
     })
   },
-  addItem() {
-    var item = {checked: "", text: ""}
-    var list = this.data.list;
-    list.push(item);
-    this.setData ({
-      list: list,
-      scrollTop: this.data.scrollTop + 96
+  bindDateChange(e) {
+    var arr = e.detail.value.split("-");
+    this.setData({
+      date: `${arr[1]}月${arr[2]}日`
     })
   },
   toSave() {
-    var self = this;
+    var money = this.data.money;
+    if(money == "0.00") {
+      wx.showToast({
+        title: '请输入金额！',
+        icon: 'none',
+      })
+      return;
+    }
     // var currentTime = util.getTime();
     // console.log(currentTime)
-    // wx.showModal({
-    //   title: '提示',
-    //   content: '确定保存吗',
-    //   success: function (res) {
-    //     if (res.confirm) {
-    //       var item = {
-    //         title: self.data.title,
-    //         content: self.data.list,
-    //         create_time: util.getTime()
-    //       }
-    //       var arr = wx.getStorageSync("history") || [];
-    //       arr.unshift(item);
-    //       console.log(arr)
-    //       wx.setStorage({
-    //         key: 'history',
-    //         data: arr,
-    //       })
-    //       // app.getCloud('bugEdit', { info: self.data.info }, res => {
-    //         wx.navigateBack()
-    //       // })
-    //     }
-    //   }
-    // })
+    if(money.substr(-1) == ".") {
+      money = money.substring(0, money.length-1)
+    }
+    wx.navigateBack()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,30 +1,69 @@
 <!--pages/index/billDetail/billDetail.wxml-->
-
-<scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{windowHeight}}rpx">
-  <!-- 标题 -->
-  <view class="pd-20 btm-space bg-white">
-    <input class="normal-dark" placeholder="请输入标题" value="{{title}}" disabled="" auto-focus="true" maxlength="18" bindinput="bindTitle"></input>
+<!-- 切换栏 -->
+<view class="row center btm-line tab">
+  <text class="normal-dark tab-item {{index == beIndex ? 'bg-pink': ''}}"
+        bindtap="checkTab" wx:for="{{tab}}" wx:key="" data-index="{{index}}">{{item}}</text>
+  <!-- <text class="normal-dark tab-item {{index == 1 ? 'bg-pink': ''}}">支出</text> -->
+</view>
+<!-- 输入框 -->
+<view class="row between bg-white content">
+  <view class="row center content-cate">
+    <image class="cate-img"></image>
+    <text class="cate-txt normal-dark pl-20">工资</text>
   </view>
-  <!-- 内容 -->
-    <view class="rel pd-20 btm-line bg-white {{item.right == 0 ? 'slide-right':'slide-left'}}" style="right:{{item.right}}rpx"
-        wx:for="{{list}}" wx:key="" data-index="{{index}}"
-        bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
-      <view class="row center">
-        <checkbox checked="{{item.checked}}" bindtap="bindChecked" data-index="{{index}}"/>
-        <input class="normal-dark" placeholder="请输入内容" value="{{item.text}}" disabled="" auto-focus="true" maxlength="18" bindinput="bindContent" data-index="{{index}}"></input>
-      </view>
-      <text class="row justify abs del-btn">删除</text>
+  <text class="normal-dark content-money" maxlength="6">{{money}}</text>
+</view>
+<!-- 类别选择 -->
+<scroll-view class="select" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}rpx">
+  <view class="row select-box">
+    <view class="column center icon">
+      <image class="cate-img"></image>
+      <text class="mini-dark">工资</text>
     </view>
-  <!-- 添加 -->
-  <view class="row center pd-20 add-item" bindtap="addItem">
-    <view class="row justify add-btn">
-      <text class="btn-txt">+</text>
+    <view class="column center icon">
+      <image class="cate-img"></image>
+      <text class="mini-dark">工资</text>
     </view>
-    <text class="pl-20 mini-dark">添加清单事项</text>
+    <view class="column center icon">
+      <image class="cate-img"></image>
+      <text class="mini-dark">工资</text>
+    </view>
+    <view class="column center icon">
+      <image class="cate-img"></image>
+      <text class="mini-dark">工资</text>
+    </view>
+    <view class="column center icon">
+      <image class="cate-img"></image>
+      <text class="mini-dark">工资</text>
+    </view>
   </view>
 </scroll-view>
-
-<!-- 按钮 -->
-<view class="row justify save-btn" bindtap="toSave">
-  <text class="row justify normal-dark save-txt">保存清单</text>
+<!-- 备注 -->
+<view class="row center btm-line bg-white remarks">
+  <text class="normal-dark pr-20">备注:</text>
+  <input class="normal-dark" placeholder="请输入备注" value=""></input>
+</view>
+<!-- 自定义键盘 -->
+<view class="row bg-white keyboard">
+  <view class="row left">
+    <view class="row justify left-item {{index>8 ? '' : 'btm-line'}}" 
+          wx:for="{{num}}" wx:key="" data-item="{{item}}" bindtap="inputNum">
+      <text class="normal-dark">{{item}}</text>
+    </view>
+  </view>
+  <view class="column right">
+    <view class="row justify right-date">
+      <picker
+        mode="date"
+        value="{{date}}"
+        start="1997-09-01"
+        end="2019-09-01"
+        bindchange="bindDateChange"
+      >
+        <text class="row justify mini-dark data-txt">{{date}}</text>
+      </picker>
+    </view>
+    <text class="row justify normal-dark right-del" bindtap="numDel">X</text>
+    <text class="row justify normal-dark right-confirm" bindtap="toSave">确定</text>
+  </view>
 </view>
