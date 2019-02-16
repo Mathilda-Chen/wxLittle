@@ -1,0 +1,76 @@
+/* pages/index/index.wxss */
+@import "../../style/common.wxss";
+
+/* 筛选 */
+.sel {
+  width: 750rpx;
+  border-top: 1rpx solid #cccccc;
+  border-bottom: 1rpx solid #cccccc;
+}
+
+.sel-item {
+  flex: 1;
+}
+
+.sel-img {
+  width: 50rpx;
+  height: 50rpx;
+  background-color: #eeeeee;
+}
+
+.slide-right {
+  transition: right 0.3s linear;
+}
+
+.slide-left {
+  transition: left 1s linear;
+}
+
+.content {
+  width: 710rpx;
+}
+
+.right-arr {
+  border-right: 8rpx solid; 
+  border-bottom: 8rpx solid;
+  width: 20rpx; 
+  height: 20rpx;
+  transform: rotate(-45deg);
+}
+
+.add-btn {
+  position: fixed;
+  right: 30rpx;
+  bottom: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #000000;
+  
+  z-index: 100;
+}
+
+.btn-txt {
+  position: relative;
+  top: -10rpx;
+  font-size: 100rpx;
+  color: #f1f1f1;
+}
+
+.slide-btn {
+  width: 240rpx;
+  height: 100%;
+  top: 0;
+  right: -240rpx;
+}
+
+.slide-item {
+  flex: 1;
+  text-align: center;
+  line-height: 100%;
+  background-color: #cccccc;
+}
+
+.inner-item {
+
+}

@@ -1,0 +1,57 @@
+/* pages/index/billDetail/billDetail.wxss */
+@import "../../../style/common.wxss";
+
+.slide-right {
+  transition: right 0.3s linear;
+}
+
+.slide-left {
+  transition: left 1s linear;
+}
+
+.check-box {
+  padding-left: 30rpx;
+}
+
+.del-btn {
+  top: 0;
+  right: -120rpx;
+  width: 120rpx;
+  height: 100%;
+  background-color: red;
+}
+
+.add-item {
+  /* margin-bottom: 200rpx; */
+}
+
+.add-btn {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background-color: #000000;
+}
+
+.btn-txt {
+  position: relative;
+  top: -3rpx;
+  font-size: 30rpx;
+  color: #f1f1f1;
+}
+
+.save-btn {
+  /* position: fixed;
+  left: 0;
+  bottom: 0; */
+  width: 750rpx;
+  padding: 30rpx 0;
+  background-color: #f1f1f1;
+}
+
+.save-txt {
+  width: 720rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #26a3d4a2;
+}

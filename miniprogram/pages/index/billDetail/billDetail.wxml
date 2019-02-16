@@ -1,0 +1,30 @@
+<!--pages/index/billDetail/billDetail.wxml-->
+
+<scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{windowHeight}}rpx">
+  <!-- 标题 -->
+  <view class="pd-20 btm-space bg-white">
+    <input class="normal-dark" placeholder="请输入标题" value="{{title}}" disabled="" auto-focus="true" maxlength="18" bindinput="bindTitle"></input>
+  </view>
+  <!-- 内容 -->
+    <view class="rel pd-20 btm-line bg-white {{item.right == 0 ? 'slide-right':'slide-left'}}" style="right:{{item.right}}rpx"
+        wx:for="{{list}}" wx:key="" data-index="{{index}}"
+        bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+      <view class="row center">
+        <checkbox checked="{{item.checked}}" bindtap="bindChecked" data-index="{{index}}"/>
+        <input class="normal-dark" placeholder="请输入内容" value="{{item.text}}" disabled="" auto-focus="true" maxlength="18" bindinput="bindContent" data-index="{{index}}"></input>
+      </view>
+      <text class="row justify abs del-btn">删除</text>
+    </view>
+  <!-- 添加 -->
+  <view class="row center pd-20 add-item" bindtap="addItem">
+    <view class="row justify add-btn">
+      <text class="btn-txt">+</text>
+    </view>
+    <text class="pl-20 mini-dark">添加清单事项</text>
+  </view>
+</scroll-view>
+
+<!-- 按钮 -->
+<view class="row justify save-btn" bindtap="toSave">
+  <text class="row justify normal-dark save-txt">保存清单</text>
+</view>

@@ -1,0 +1,41 @@
+<!--pages/index/index.wxml-->
+<!-- 筛选 -->
+<!-- <view class="row sel bg-white">
+  <view class="row between sel-item pd-20 right-line">
+    <text class="normal-dark">全部清单</text>
+    <image class="sel-img" src=""></image>
+  </view>
+  <view class="row between sel-item pd-20">
+    <text class="normal-dark">按时间排序</text>
+    <image class="sel-img" src=""></image>
+  </view>
+</view> -->
+<!-- 内容 -->
+<view class="pd-20 bg-white rel {{item.right == 0 ? 'slide-right':'slide-left'}}" style="right:{{item.right}}rpx"
+      wx:for="{{info}}" wx:key="" data-index="{{index}}"
+      bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <!-- 详情 -->
+  <view class="row between content" bindtap="toDetail" >
+    <view class="column">
+      <text class="normal-dark">{{item.title}}</text>
+      <view>
+        <text class="mini-gray">{{item.create_time}}</text>
+        <text class="mini-gray pl-20">已完成: 1/4</text>
+      </view>
+    </view>
+    <text class="right-arr"></text>
+  </view>
+  <!-- 左滑按钮 -->
+  <view class="row abs slide-btn">
+    <view class="slide-item row justify" bindtap="toShare">
+      <text class="inner-item">分享</text>
+    </view>
+    <view class="slide-item row justify" bindtap="toDel">
+      <text class="inner-item">删除</text>
+    </view>
+  </view>
+</view>
+<!-- 添加 -->
+<view class="row justify add-btn">
+  <text class="btn-txt" bindtap="toDetail">+</text>
+</view>
