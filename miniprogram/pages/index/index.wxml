@@ -1,55 +1,127 @@
 <!--pages/index/index.wxml-->
-<view class="info">
-  <!-- 添加账本 -->
-  <view class="row justify info-title" bindtap="showAdd">
-    <text class="normal-dark pr-20">XXX的记账本</text>
-    <image class="title-img"></image>
-  </view>
-  <!-- 详情 -->
-  <view class="row center info-detail">
-    <text class="normal-dark detail-txt">2019年/2月</text>
-    <text class="normal-dark detail-txt">收入 8888</text> 
-    <text class="normal-dark detail-txt">支出 666</text>
+<view class="rel top">
+  <image class="top" src="../../images/home_top_bg@2x.png"></image>
+  <view class="abs info">
+    <view class="row justify nav" style="padding-top:{{statusBarHeight}}px">
+      <text class="nav-title">记账</text> 
+    </view>
+    <!-- 添加账本 --> 
+    <view class="row center info-title" bindtap="toShowBooks">
+      <view class="row center title-con">
+        <text class="title-txt">{{cur_book.bookname}}</text>
+        <image class="title-img" src="../../images/icon_triangle@2x.png"></image>
+      </view>
+    </view>
+    <!-- 详情 -->
+    <view class="row info-detail">
+      <view class="">
+        <picker
+          mode="date"
+          value="{{date}}"
+          start="1997-09-01"
+          end="2019-09-01"
+          bindchange="bindDateChange"
+        >
+          <view class="column center rel detail-date">
+            <view class="date-year">
+              <text class="white-28">2019年</text>
+            </view>
+            <view class="date-day">
+              <text class="white-36">2月</text>
+              <image class="title-img" src="../../images/icon_triangle@2x.png"></image>
+            </view>
+          </view>
+          <text class="row justify mini-dark data-txt">{{date}}</text>
+        </picker>
+      </view>
+      <text class="rel line"></text>
+      <view class="column rel detail-else">
+        <text class="white-30">结余</text>
+        <text class="white-44">49970.00</text>
+      </view>
+      <view class="column">
+        <text class="white-28 detail-num">收入： 50000.00</text>
+        <text class="white-28">支出： 30.00</text>
+      </view>
+    </view>
+    <!-- 横线 -->
+    <view class="tan"></view>
   </view>
 </view>
+
 <!-- 账本选择/添加 -->
-<view class="abs add-book column" wx:if="{{addBook}}">
-  <view class="book bg-white">
-    <view class="row center btm-line book-detail">
-      <image class="detail-img"></image>
-      <text class="normal-dark pl-20">我的账本</text>
+<view class="mask" bindtap="toShowBooks" wx:if="{{showBooks}}"></view>
+<view class="column abs bg-white add-book" style="top: {{addHeight}}rpx" wx:if="{{showBooks}}">
+  <scroll-view scroll-y="true" class="column book-con">
+    <view class="rel row center book-detail {{item.right == 0 ? 'slide-right':'slide-left'}}" style="right:{{item.right}}rpx"
+          wx:for="{{books}}" wx:key="" data-index="{{index}}" data-item="{{item}}"
+          catchtap="selBook" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"
+    >
+      <view class="row justify detail-img">
+        <text class="img-inner" wx:if="{{item.is_default}}"></text>
+      </view>
+      <view class="row between btm-line detail-con">
+        <text class="con-title {{item.is_default?'active':''}}">{{item.bookname}}</text>
+        <image class="con-img" src="../../images/list_icon_dot@2x.png"></image>
+      </view>
+      <view class="row abs slide-btn">
+        <view class="slide-item row justify" catchtap="toRename" data-item="{{item}}" data-index="{{index}}">
+          <image class="inner-item" src="../../images/list_icon_edit@2x.png"></image>
+        </view>
+        <view class="slide-item row justify" catchtap="toDel" data-item="{{item}}">
+          <image class="inner-item" src="../../images/list_icon_delete@2x.png"></image>
+        </view>
+      </view>
     </view>
-    <view class="row center btm-line book-detail">
-      <image class="detail-img"></image>
-      <text class="normal-dark pl-20">我的账本</text>
-    </view>
-    <view class="row center book-detail">
-      <image class="detail-img"></image>
-      <input class="normal-dark pd-20" placeholder="请输入新账本名称"></input>
-    </view>
-    <view class="row center book-btn">
-      <text class="normal-dark bg-gray btn-style" bindtap="showAdd">取消</text>
-      <text class="normal-dark bg-pink btn-style" bindtap="showAdd">确认</text>
-    </view>
+  </scroll-view>
+  <view class="row justify book-add" bindtap="toAddBook">
+    <image class="add-img" src="../../images/list_icon_add_new@2x.png"></image>
+    <text class="add-txt">新建账本</text>
   </view>
-  <view class="mask" bindtap="showAdd"></view>
 </view>
+
+<modal wx:if="{{showModalput}}" title="请输入账本名称" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+  <input type="text" placeholder="请输入名称" maxlength="20" value="{{rename}}" bindinput="inputConfirm" focus="true" cursor-spacing="10px"/>
+</modal>
+
 <!-- 账单详情 -->
-<view class="row between content btm-line">
-  <text class="normal-dark content-date">02月16日</text>
-  <view class="row center normal-darkcontent-money">
-    <text class="normal-dark pr-20">收入：100</text>
-    <text class="normal-dark">支出：50</text>
+<scroll-view class="abs select" scroll-y="true" style="height:{{scrollHeight}}rpx" bindscroll="bindScroll" bindscrolltolower="loadMore">
+  <view class="content" wx:if="{{hasCon}}">
+    <view wx:for="{{bills}}" wx:key="" bindtouchstart="touchStartBills" data-index="{{index}}">
+      <view class="row between btm-line content-title">
+        <text class="content-date">{{item.date}}</text>
+        <view class="row center normal-darkcontent-money">
+          <text class="date-num">收入：{{item.income}}</text>
+          <text class="date-num date-else">支出：{{item.outcome}}</text>
+        </view>
+      </view>
+      <view class="rel row between record {{item.right == 0 ? 'slide-right':'slide-left'}}" style="right:{{item.right}}rpx"
+          wx:for="{{item.bill}}" wx:key="" data-index="{{index}}" data-item="{{item}}"
+          bindtouchstart="touchStartBill" bindtouchmove="touchMoveBill" bindtouchend="touchEndBill"
+      >
+        <view class="row justify">
+          <image class="icon"></image>
+          <text class="money">{{item.cate}}</text>
+        </view>
+        <view>
+          <text class="money">{{item.type?"+":"-"}}</text>
+          <text class="money">{{item.money}}</text>
+        </view>
+        <view class="row abs slide-btn">
+          <view class="slide-item row justify" catchtap="toEdit" data-item="{{item}}" data-index="{{index}}">
+            <image class="inner-item" src="../../images/list_icon_edit@2x.png"></image>
+          </view>
+          <view class="slide-item row justify" catchtap="toDelBill" data-item="{{item}}">
+            <image class="inner-item" src="../../images/list_icon_delete@2x.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- <text class="row justify normal-dark norecord">没有更多记录了~</text> -->
   </view>
-</view>
-<view class="row between record">
-  <view class="row justify">
-    <image class="icon"></image>
-    <text class="normal-dark pl-20">购物</text>
+  <view class="row justify bill-none" wx:if="{{!hasCon}}">
+    <text class="none-txt">点击“+”号，开始第一笔记账吧</text>
   </view>
-  <text class="normal-dark">-50</text>
-</view>
+</scroll-view>
 <!-- 添加 -->
-<view class="row justify add-btn">
-  <text class="btn-txt" bindtap="toDetail">+</text>
-</view>
+<image class="add-btn" src="../../images/home_icon_add@2x.png" bindtap="toAddBill"></image>

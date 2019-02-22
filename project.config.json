@@ -10,7 +10,7 @@
 	},
 	"appid": "wx18bc1c07b204f952",
 	"projectname": "miniprogram-billLIst",
-	"libVersion": "2.2.5",
+	"libVersion": "2.6.0",
 	"condition": {
 		"search": {
 			"current": -1,

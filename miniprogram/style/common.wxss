@@ -46,13 +46,6 @@
   justify-content: space-between;
 }
 
-.column-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .right-line {
   border-right: 1rpx solid #eeeeee;
 }
@@ -179,5 +172,29 @@
 
 .big-white {
   font-size: 34rpx;
+  color: #ffffff;
+}
+
+
+
+
+.white-28 {
+  font-size: 28rpx;
+  color: #ffffff;
+}
+.white-30 {
+  font-size: 30rpx;
+  color: #ffffff;
+}
+.white-32 {
+  font-size: 32rpx;
+  color: #ffffff;
+}
+.white-36 {
+  font-size: 36rpx;
+  color: #ffffff;
+}
+.white-44 {
+  font-size: 44rpx;
   color: #ffffff;
 }

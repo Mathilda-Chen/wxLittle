@@ -1,20 +1,25 @@
 // pages/center/center.js
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userinfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // console.log(app.globalData)
+    if (app.globalData.userinfo.length == 0) return;
+    this.setData ({
+      userinfo: app.globalData.userinfo
+    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -60,7 +65,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage(res) {
+    console.log(111, res)
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '账单',
+      path: '/pages/start/start',
+      imageUrl: '../../images/share.png'
+    }
+  },
 })

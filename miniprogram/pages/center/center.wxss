@@ -1,1 +1,35 @@
 /* pages/center/center.wxss */
+@import "../../style/common.wxss";
+
+.user {
+  width: 750rpx;
+  height: 300rpx;
+}
+
+.user-img { 
+  width: 200rpx;
+  height: 200rpx;
+  background-color: yellow;
+  border-radius: 100rpx;
+}
+
+.user-name {
+  padding: 20rpx;
+}
+
+.else {
+  width: 750rpx;
+}
+
+.else-item {
+  width: 360rpx;
+  height: 200rpx;
+  border: 1rpx solid #cccccc;
+}
+
+.adv {
+  width: 730rpx;
+  height: 200rpx;
+  background-color: orange;
+  margin: 30rpx 10rpx;
+}

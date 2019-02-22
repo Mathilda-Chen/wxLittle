@@ -1,0 +1,54 @@
+<!--pages/index/billDetail/billDetail.wxml-->
+<!-- 切换栏 -->
+<view class="row center btm-line tab">
+  <text class="normal-dark tab-item {{index == typeIndex ? 'bg-pink': ''}}"
+        bindtap="checkTab" wx:for="{{tab}}" wx:key="" data-index="{{index}}">{{item}}</text>
+  <!-- <text class="normal-dark tab-item {{index == 1 ? 'bg-pink': ''}}">支出</text> -->
+</view>
+<!-- 输入框 -->
+<view class="row between bg-white content">
+  <view class="row center content-cate">
+    <image class="cate-img"></image>
+    <text class="cate-txt normal-dark pl-20">{{cate[typeIndex][cateIndex].name}}</text>
+  </view>
+  <text class="normal-dark content-money" maxlength="6">{{money}}</text>
+</view>
+<!-- 类别选择 -->
+<scroll-view class="select" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}rpx">
+  <view class="row select-box">
+    <view class="column center icon {{index == cateIndex ? 'bg-pink': ''}}"
+          bindtap="selCate" wx:for="{{cate[typeIndex]}}" wx:key="" data-index="{{index}}">
+      <image class="cate-img"></image>
+      <text class="mini-dark">{{item.name}}</text>
+    </view>
+  </view>
+</scroll-view>
+<!-- 备注 -->
+<view class="row center btm-line bg-white remarks">
+  <text class="normal-dark pr-20">备注:</text>
+  <input class="normal-dark" placeholder="请输入备注" value="{{remarks}}" bindinput="bindRemarks"></input>
+</view>
+<!-- 自定义键盘 -->
+<view class="row bg-white keyboard">
+  <view class="row left">
+    <view class="row justify left-item {{index>8 ? '' : 'btm-line'}}" 
+          wx:for="{{num}}" wx:key="" data-item="{{item}}" bindtap="inputNum">
+      <text class="normal-dark">{{item}}</text>
+    </view>
+  </view>
+  <view class="column right">
+    <view class="row justify right-date">
+      <picker
+        mode="date"
+        value="{{date}}"
+        start="1997-09-01"
+        end="2019-09-01"
+        bindchange="bindDateChange"
+      >
+        <text class="row justify mini-dark data-txt">{{date}}</text>
+      </picker>
+    </view>
+    <text class="row justify normal-dark right-del" bindtap="numDel">X</text>
+    <text class="row justify normal-dark right-confirm" bindtap="toSave">确定</text>
+  </view>
+</view>

@@ -1,2 +1,17 @@
 <!--pages/center/center.wxml-->
-<text>pages/center/center.wxml</text>
+<view class="column justify user">
+  <image class="user-img" src="{{userinfo.avatarUrl}}"></image>
+  <text class="user-name">{{userinfo.nickName}}</text>
+</view>
+<view class="row around else">
+  <view class="row justify else-item">
+    <!-- <text>分享</text>  -->
+    <button open-type="share">分享</button>
+  </view>
+  <view class="row justify else-item">
+    <text>关于我们</text>
+  </view>
+</view>
+<view class="row justify adv">
+  <text>广告位</text>
+</view>

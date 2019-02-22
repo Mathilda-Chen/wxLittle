@@ -1,31 +1,39 @@
 // 云函数模板
-// 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
 
 const cloud = require('wx-server-sdk')
 
 // 初始化 cloud
 cloud.init()
 
-/**
- * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
- * 
- * event 参数包含小程序端调用传入的 data
- * 
- */
-exports.main = (event, context) => {
-  console.log(event)
-  console.log(context)
+const db = cloud.database({ env: 'bill1902-text-d05f84' })
 
-  // 可执行其他自定义逻辑
-  // console.log 的内容可以在云开发云函数调用日志查看
-
-  // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
-  const wxContext = cloud.getWXContext()
-
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
+exports.main = async (event) => {
+  console.log('event', event)
+  const openId = cloud.getWXContext().OPENID;
+  const info = await db.collection('user').where({ _openid: openId }).get()
+  if(info.data.length == 0 && event.info) {
+    await db.collection('books').add({
+      data: {
+        bookname: `${event.info.nickName}的记账本`,
+        is_default: 1, 
+        create_time: event.time,
+        identity: 0,
+        _openid: openId
+      }
+    })
+    await db.collection('user').add({
+      data: {
+        avatarUrl: event.info.avatarUrl,
+        city: event.info.city,
+        country: event.info.country,
+        gender: event.info.gender,
+        nickName: event.info.nickName,
+        _openid: openId,
+        province: event.info.province,
+        create_time: event.time
+      }
+    })
+  }else {
+    return info
   }
 }

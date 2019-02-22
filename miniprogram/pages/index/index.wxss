@@ -1,52 +1,166 @@
 /* pages/index/index.wxss */
 @import "../../style/common.wxss";
 
-/* 添加账本 */
+/* 添加账本 */ 
+.top {
+  width: 750rpx;
+  height: 428rpx; 
+}
+
 .info {
-  position: fixed;
   top: 0;
   left: 0;
   width: 750rpx;
-  height: 180rpx;
-  background-color: rgb(151, 209, 36);
+}
+
+.nav {
+  width: 750rpx;
+  height: 88rpx;
+}
+
+.nav-title {
+  color: #ffffff;
+  font-size: 36rpx;
 }
 
 .info-title {
-  padding: 10rpx 0 20rpx 0;
+  height: 60rpx;
+  margin-left: 40rpx;
+}
+.title-con {
+  max-width: 350rpx; 
+  padding: 0 37rpx;
+  border-radius: 30rpx;
+  background-color: rgba(58,125,155,0.3);
+
+}
+.title-txt {
+  max-width: 300rpx;
+  height: 60rpx;
+  padding-right: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 60rpx;
+  font-size: 32rpx;
+  color: #ffffff;
 }
 
 .title-img {
-  width: 50rpx;
-  height: 50rpx;
-  background-color: #dddddd;
+  width: 20rpx;
+  height: 20rpx;
 }
 
 /* 详情 */
+.info-detail {
+  padding-top: 43rpx;
+  opacity: 0.7;
+}
 .detail-txt {
   width: 250rpx;
 }
+.detail-date {
+  top: -10rpx;
+  width: 165rpx;
+}
+.date-year {
+  width: 93rpx;
+}
+.date-day {
+  width: 93rpx;
+  text-align: right;
+}
+.line {
+  top: 10rpx;
+  width: 2rpx;
+  height: 70rpx;
+  background-color: rgba(255, 255, 255, 0.34);
+}
+.detail-else {
+  top: -5rpx;
+  width: 278rpx;
+  padding-left: 50rpx;
+}
+.detail-num {
+  padding-bottom: 10rpx;
+}
+.tan {
+  width: 720rpx;
+  height: 20rpx;
+  border-radius:10px;
+  margin: 28rpx 15rpx 0 15rpx;
+  background-color: #117DC2;
 
+}
 /* 账本添加 */
-.add-book {
-  top: 180rpx;
+
+.mask {
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 750rpx;
+  width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
 }
 
-.book {
-  width: 710rpx;
-  padding: 20rpx;
+.add-book {
+  left: 25rpx;
+  width: 700rpx;
+  height: 500rpx;
+  border-radius: 20px;
+  z-index: 200;
+  overflow: hidden;
 }
-
+.book-con {
+  width: 700rpx;
+  height: 500rpx;
+  overflow: hidden;
+}
 .book-detail {
-  padding: 20rpx 0;
+  width: 700rpx;
+  height: 100rpx;
+  z-index: 300;
 }
-
 .detail-img {
+  width: 60rpx;
+}
+.img-inner {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius:50%;
+  background-color: #4FC1FF;
+}
+.detail-con {
+  width: 612rpx;
+  padding-right: 28rpx;
+  height: 100rpx;
+}
+.con-title {
+  color: #353535;
+  font-size: 32rpx;
+}
+.con-img {
+  width: 60rpx;
+  height: 60rpx;
+}
+.active {
+  color: #4FC1FF;
+}
+.book-add {
+  width: 700rpx;
+  height: 100rpx;
+  /* padding: 35rpx 0; */
+}
+.add-img {
   width: 40rpx;
   height: 40rpx;
-  background-color: #cccccc;
+  border: 1rpx dotted #000000;
+  margin-right: 10rpx;
+}
+.add-txt {
+  color: #353535;
+  font-size: 32rpx;
 }
 
 .book-btn {
@@ -60,55 +174,105 @@
   text-align: center;
 }
 
-.mask {
+.slide-btn {
+  top: 0;
+  right: -230rpx;
+  width: 230rpx;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+
 }
 
+.slide-item {
+  flex: 1;
+  text-align: center;
+  line-height: 100%;
+  background-color: #D2D2D2;
+}
+.inner-item {
+  width: 60rpx;
+  height: 60rpx;
+}
+.slide-right {
+  transition: right 0.3s linear;
+}
+
+.slide-left {
+  transition: left 1s linear;
+}
+.bill-none {
+  width: 700rpx;
+  height: 800rpx;
+  
+}
+.none-txt {
+  font-size: 28rpx;
+  color: #A3ACBD;
+}
 /* 账单详情 */
+.select {
+  bottom: 20rpx;
+  left: 25rpx;
+  width: 700rpx;
+  background-color: #ffffff;
+}
+
 .content {
-  width: 730rpx;
-  padding: 10rpx;
-  margin-top: 180rpx;
+  /* width: 730rpx; */
+  /* padding: 10rpx; */
+  /* margin-top: 180rpx; */
 }
+.content-title {
+  width: 660rpx;
+  height: 100rpx;
+  margin: 0 20rpx 10rpx 20rpx;
+  margin-bottom: 10rpx;
 
+}
 .content-date {
-  width: 200rpx;
+  width: 120rpx;
+  font-size: 24rpx;
+  color: #A5A5A5;
 }
-
+.date-num {
+  font-size: 20rpx;
+  color: #A5A5A5;
+}
+.date-else {
+  padding-left: 26rpx;
+}
 .content-money {
   max-width: 550rpx;
 }
 
 .record {
-  width: 710rpx;
-  padding: 20rpx;
-  border-bottom: 1rpx solid #eeeeee;
+  width: 660rpx;
+  padding: 10rpx 20rpx 10px 20rpx;
 }
 
 .icon {
-  width: 40rpx;
-  height: 40rpx;
-  background-color: rgb(17, 222, 230);
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right: 26rpx;
+  background-color: #D9F3FC;
 }
 
+.money {
+  font-size: 28rpx;
+  color: #353535;
+}
+.norecord {
+  /* width: 750rpx; */
+  height: 80rpx;
+
+}
 /* 添加按钮 */
 .add-btn {
   position: fixed;
-  right: 30rpx;
-  bottom: 30rpx;
-  width: 100rpx;
-  height: 100rpx;
+  right: 34rpx;
+  bottom: 25rpx;
+  width: 140rpx;
+  height: 140rpx;
   border-radius: 50%;
-  background-color: #000000;
-  
-  z-index: 100;
+  z-index: 90;
 }
-
-.btn-txt {
-  position: relative;
-  top: -10rpx;
-  font-size: 100rpx;
-  color: #f1f1f1;
-}
-

@@ -1,29 +1,37 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/index/index",
-    "pages/index/billDetail/billDetail",
-    "pages/count/count",
-    "pages/center/center"
+    "pages/index/addBill/addBill",
+    "pages/center/center",
+    "pages/count/count"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "我的清单",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#48c0ff",
+    "navigationBarTitleText": "记账",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
   },
   "tabBar": {
-    "selectedColor": "green",
+    "selectedColor": "#4FC1FF",
     "list": [
       {
+        "iconPath": "/images/tab_icon1_1@2x.png",
+        "selectedIconPath": "/images/tab_icon1_2@2x.png",
         "pagePath": "pages/index/index",
         "text": "我的账单"
       },
       {
+        "iconPath": "/images/tab_icon2_1@2x.png",
+        "selectedIconPath": "/images/tab_icon2_2@2x.png",
         "pagePath": "pages/count/count",
         "text": "图表统计"
       },
       {
+        "iconPath": "/images/tab_icon3_1@2x.png",
+        "selectedIconPath": "/images/tab_icon3_2@2x.png",
         "pagePath": "pages/center/center",
         "text": "个人中心"
       }

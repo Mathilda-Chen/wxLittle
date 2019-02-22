@@ -1,0 +1,5 @@
+<!--components/navbar/navbar.wxml-->
+<view class="nav" style="padding-top: {{statusBarHeight}}rpx">
+  <text class="nav-title">demo</text>
+</view>
+

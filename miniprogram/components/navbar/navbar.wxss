@@ -1,0 +1,24 @@
+/* components/navbar/navbar.wxss */
+
+.custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999999;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88rpx;
+  background-color: #4FC1FF;
+}
+
+.nav-title {
+  max-width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 36rpx;
+  color: #ffffff;
+}
