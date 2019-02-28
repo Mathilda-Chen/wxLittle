@@ -5,6 +5,7 @@ const cloud = require('wx-server-sdk')
 // 初始化 cloud
 cloud.init()
 
+// const db = cloud.database({ env: 'bill1902-online-9c3e8c' })
 const db = cloud.database({ env: 'bill1902-text-d05f84' })
 
 exports.main = async (event) => {

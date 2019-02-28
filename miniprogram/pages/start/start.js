@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    height: app.globalData.statusBarHeight + 44,
    
   },
 
@@ -15,16 +16,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var self = this;
-    // wx.getStorage({
-    //   key: 'userinfo',
-    //   success(res) {
-    //     if (res.data) {
-    //       app.globalData.userinfo = res.data;
-    //       self.direct();
-    //     }
-    //   }
-    // })
+    var self = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success(res) {
+        if (res.data) {
+          app.globalData.userinfo = res.data;
+          app.globalData.openId = res.data._openid;
+          self.direct();
+        }
+      }
+    })
   },
   onGotUserInfo(e) {
     if (e && e.detail.errMsg == "getUserInfo:ok") {
@@ -45,6 +47,7 @@ Page({
         data: res.result.data[0],
       })
       app.globalData.userinfo = res.result.data[0];
+      app.globalData.openId = res.result.data[0]._openid;
       this.toNext();
     })
   },

@@ -2,7 +2,7 @@
 <view>
   <view class="content">
     <image class="login-icon" src="../../images/warrant_icon@2x.png"></image>
-    <text class="login-txt">让记账成为一种习惯</text>
+    <text class="login-txt">记账账单，让收支明细一目了然</text>
     <button class="login-btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">授权微信登录</button>
   </view>
   <image class="btm-img" src="../../images/warrant_bottom_bg@2x.png"></image>

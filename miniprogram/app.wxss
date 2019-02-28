@@ -3,6 +3,6 @@ text{
     font-family: Microsoft Yahei;     
 }
 page{
-    background-color: #f5f5f5;
+    background-color: #ECEEEF;
 }
 

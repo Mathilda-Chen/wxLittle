@@ -25,7 +25,6 @@ page {
 .login-txt {
   color: #ffffff;
   font-size: 28rpx;
-  font-weight: 100;
   letter-spacing: 0.61em;
   margin-bottom: 282rpx;
 }

@@ -4,96 +4,192 @@
 /* 切换栏 */
 .tab {
   width: 750rpx;
+  height: 80rpx;
+  background-color: #4FC1FF;
+  justify-content: center;
+}
+
+.tab-box {
+  width: 300rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  overflow: hidden;
+  background-color: #92DAFF;
 }
 
 .tab-item {
-  width: 375rpx;
+  width: 150rpx;
+  height: 60rpx;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 60rpx;
+  font-size: 32rpx;
+  color: #E4F5FE;
+}
+
+.tab-left {
+  border-top-right-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+}
+
+.tab-right {
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+}
+
+.active-tab {
+  color: #4FC1FF;
+  background-color: #ffffff;
 }
 
 /* 输入框 */
 .content {
-  width: 710rpx;
+  width: 750rpx;
   height: 120rpx;
-  padding: 0 20rpx;
-}
-
-.content-cate {
-  width: 350rpx;
 }
 
 .cate-img {
-  width: 100rpx;
-  height: 100rpx;
-  background-color: #cccccc;
+  width: 90rpx;
+  height: 90rpx;
   border-radius: 50%;
+  margin-left: 30rpx;
+  margin-right: 19rpx;
 }
 
-.money {
-  width: 400rpx;
-  text-align: right; 
+.cate-txt {
+  color: #353535;
+  font-size: 28rpx;
+}
+
+.content-money {
+  color: #4FC1FF;
+  font-size: 40rpx;
+  padding-right: 50rpx;
 }
 
 /* 类别选择 */
 .select {
-  padding: 20rpx 0;
-  background-color: #eeeeee;
+  width: 690rpx;
+  padding: 0 30rpx;
+  background-color: #F8F9FA;
 }
 
 .select-box {
+  padding: 20rpx 0;
   flex-wrap: wrap;
 }
 
 .icon {
-  width: 150rpx;
-  height: 140rpx;
-  margin-bottom: 20rpx;
+  margin-right: 60rpx;
 }
 
+.cates-img {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.cates-name {
+  line-height: 60rpx;
+  font-size:28rpx;
+  font-weight:400;
+  color:#979CA5;
+}
+
+.active-cate {
+  color: #353535;
+}
 /* 备注 */
 .remarks {
-  height: 100rpx;
-  padding: 0 20rpx;
+  height: 80rpx;
+  padding: 0 29rpx;
+  border-bottom: 1rpx solid #ECEEEF;
+}
+
+.remarks-txt {
+  width: 100rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  font-weight: 400; 
+  color: #979CA5;
+  padding-right: 10rpx;
+  text-align: left;
+}
+
+.remarks-con {
+  width: 600rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  font-weight: 400; 
+  color: #979CA5;
+  padding-right: 10rpx;
+  text-align: left;
 }
 
 /* 自定义键盘 */
 .keyboard {
   width: 750rpx;
-  height: 404rpx;
+  height: 444rpx;
 }
 
 .left {
-  width: 570rpx;
+  width: 558rpx;
   flex-wrap: wrap;
 }
 
 .left-item {
-  width: 189rpx;
-  height: 100rpx;
-  border-right: 1rpx solid #eeeeee;
+  width: 185rpx;
+  height: 110rpx;
+}
+
+.key-num {
+  color: #353535;
+  font-size: 44rpx;
+}
+
+.del-all {
+  color: #353535;
+  font-size: 32rpx;
+}
+
+.key-dot {
+  width: 10rpx;
+  height: 10rpx;
+  background:#353535;
+  border-radius: 50%;
 }
 
 .right {
-  width: 180rpx;
+  width: 192rpx;
+  border-left: 1rpx solid #ECEEEF;
 }
 
 .right-date {
-  height: 100rpx;
-  border-bottom: 1rpx solid #eeeeee;
+  height: 110rpx;
+  border-bottom: 1rpx solid #ECEEEF;
 }
 
 .data-txt {
-  width: 150rpx;
+  width: 192rpx;
   height: 50rpx;
-  border: 1rpx solid #eeeeee;
+  color: #353535;
+  font-size: 32rpx;
 }
 
 .right-del {
-  height: 100rpx;
-  border-bottom: 1rpx solid #eeeeee;
+  width: 192rpx;
+  height: 110rpx;
+  border-bottom: 1rpx solid #ECEEEF;
+}
+
+.del-img {
+  width: 60rpx;
+  height: 60rpx;
 }
 
 .right-confirm {
-  height: 200rpx;
+  width: 192rpx;
+  height: 221rpx;
+  background-color: #4FC1FF;
+  color: #ffffff;
+  font-size: 38rpx;
 }

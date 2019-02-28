@@ -3,8 +3,8 @@
     "pages/start/start",
     "pages/index/index",
     "pages/index/addBill/addBill",
-    "pages/center/center",
-    "pages/count/count"
+    "pages/count/count",
+    "pages/center/center"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

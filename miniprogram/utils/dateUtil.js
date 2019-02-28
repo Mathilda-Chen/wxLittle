@@ -7,7 +7,6 @@ function formatDate(timestamp) {
   let minute = time.getMinutes();
   let second = time.getSeconds();
 
-  year < 10 && (year = `0${year}`);
   month < 10 && (month = `0${month}`);
   day < 10 && (day = `0${day}`);
   hour < 10 && (hour = `0${hour}`);
@@ -17,17 +16,41 @@ function formatDate(timestamp) {
   return `${year}年${month}月${day}日 ${hour}:${minute}:${second}`
 }
 
+// 当前具体时间
+function getHour() {
+  let time = new Date();
+  let hour = time.getHours();
+  let minute = time.getMinutes();
+  let second = time.getSeconds();
+  return `${hour}:${minute}:${second}`
+}
+
+
 //当前时间戳
 function getTime() {
   return Date.parse(new Date());
 }
 
 // 转换时间戳
-function changeTime(time) {
-  var date = new Date(time);
+// 格式 year-month-day
+function changeTime(time, isAdd, spe) {
+  var year = time[0];
+  var month = isAdd ? parseInt(time[1])+1 : time[1];
+  var day = time[2] ? time[2]: 1;
+  var hour = spe ? spe : "00:00:00"
+  var newTime = `${year}/${month}/${day} ${hour}`;
+  var date = new Date(newTime);
   return Date.parse(date);
 }
 
+// 获取每个月的天数
+function getCountDays(month) {
+  var curDate = new Date();
+  curDate.setMonth(month);
+  curDate.setDate(0);
+  return curDate.getDate();
+}
+
 module.exports = {
-  formatDate, getTime, changeTime
+  formatDate, getTime, changeTime, getCountDays, getHour
 }

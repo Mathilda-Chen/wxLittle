@@ -1,5 +1,8 @@
 <!--components/navbar/navbar.wxml-->
 <view class="nav" style="padding-top: {{statusBarHeight}}rpx">
-  <text class="nav-title">demo</text>
+  <view class="back-home" bindtap="_navback" wx:if="{{isShowBack=='true'}}">
+    <image class="back-img" src="/images/nav_icon_back@2x.png" mode="aspectFill"></image>
+  </view>
+  <text class="nav-title">{{innerTitle}}</text>
 </view>
-
+ 

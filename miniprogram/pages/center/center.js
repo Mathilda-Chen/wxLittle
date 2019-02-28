@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    height: app.globalData.statusBarHeight + 88,
     userinfo: {}
   },
 
@@ -14,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(app.globalData)
     if (app.globalData.userinfo.length == 0) return;
     this.setData ({
       userinfo: app.globalData.userinfo
@@ -72,7 +72,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '账单',
+      title: '',
       path: '/pages/start/start',
       imageUrl: '../../images/share.png'
     }

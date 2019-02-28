@@ -1,17 +1,29 @@
 <!--pages/center/center.wxml-->
-<view class="column justify user">
-  <image class="user-img" src="{{userinfo.avatarUrl}}"></image>
-  <text class="user-name">{{userinfo.nickName}}</text>
-</view>
-<view class="row around else">
-  <view class="row justify else-item">
-    <!-- <text>分享</text>  -->
-    <button open-type="share">分享</button>
+<view>
+  <nav-bar isShowBack="false" inner-title="个人中心"></nav-bar>
+  <view style="padding-top: {{height}}rpx">
+    <view class="rel bg">
+      <image class="bg" src="/images/personal_bg@2x.png"></image>
+      <view class="abs column center user">
+        <image class="user-img" src="{{userinfo.avatarUrl}}"></image>
+        <text class="user-name">{{userinfo.nickName}}</text>
+      </view>
+    </view>
+
+    <view class="row around else">
+      <view class="rel column justify else-item">
+        <image class="else-img" src="/images/personal_icon_share@2x.png"></image>
+        <text class="else-txt">分享给朋友</text>
+        <button class="abs btn" open-type="share"></button>
+      </view>
+      <view class="rel column justify else-item">
+        <image class="else-img" src="/images/personal_icon_service@2x.png"></image>
+        <text class="else-txt">联系客服</text>
+        <button class="abs btn" open-type="contact"></button>
+      </view>
+    </view>
+    <!-- <view class="row justify adv">
+      <text>广告位</text>
+    </view> -->
   </view>
-  <view class="row justify else-item">
-    <text>关于我们</text>
-  </view>
-</view>
-<view class="row justify adv">
-  <text>广告位</text>
 </view>

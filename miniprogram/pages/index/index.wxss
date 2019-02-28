@@ -27,6 +27,7 @@
   height: 60rpx;
   margin-left: 40rpx;
 }
+
 .title-con {
   max-width: 350rpx; 
   padding: 0 37rpx;
@@ -53,47 +54,63 @@
 
 /* 详情 */
 .info-detail {
-  padding-top: 43rpx;
-  opacity: 0.7;
+  width: 703rpx;
+  height: 94rpx;
+  margin: 40rpx 10rpx 40rpx 37rpx;
 }
-.detail-txt {
-  width: 250rpx;
-}
+
 .detail-date {
-  top: -10rpx;
-  width: 165rpx;
+  /* top: -10rpx; */
+  width: 128rpx;
+  height: 94rpx;
 }
+
 .date-year {
-  width: 93rpx;
+  width: 110rpx;
+  padding-bottom: 10rpx;
 }
+
 .date-day {
-  width: 93rpx;
+  width: 110rpx;
   text-align: right;
 }
+
 .line {
   top: 10rpx;
   width: 2rpx;
   height: 70rpx;
   background-color: rgba(255, 255, 255, 0.34);
 }
+
 .detail-else {
   top: -5rpx;
   width: 278rpx;
   padding-left: 50rpx;
 }
+
+.else-text {
+  display: inline-block;
+  width: 278rpx;
+}
+
 .detail-num {
   padding-bottom: 10rpx;
 }
+
+.outcome-text {
+  display: inline-block;
+  width: 200rpx;
+}
+
 .tan {
   width: 720rpx;
   height: 20rpx;
   border-radius:10px;
-  margin: 28rpx 15rpx 0 15rpx;
+  margin: 0 15rpx;
   background-color: #117DC2;
-
 }
-/* 账本添加 */
 
+/* 账本添加 */
 .mask {
   position: fixed;
   top: 0;
@@ -107,57 +124,66 @@
 .add-book {
   left: 25rpx;
   width: 700rpx;
-  height: 500rpx;
+  max-height: 500rpx;
   border-radius: 20px;
   z-index: 200;
   overflow: hidden;
 }
+
 .book-con {
   width: 700rpx;
-  height: 500rpx;
+  max-height: 400rpx;
   overflow: hidden;
 }
+
 .book-detail {
   width: 700rpx;
   height: 100rpx;
   z-index: 300;
 }
+
 .detail-img {
   width: 60rpx;
 }
+
 .img-inner {
   width: 16rpx;
   height: 16rpx;
   border-radius:50%;
   background-color: #4FC1FF;
 }
+
 .detail-con {
   width: 612rpx;
   padding-right: 28rpx;
   height: 100rpx;
 }
+
 .con-title {
   color: #353535;
   font-size: 32rpx;
 }
+
 .con-img {
   width: 60rpx;
   height: 60rpx;
 }
+
 .active {
   color: #4FC1FF;
 }
+
 .book-add {
   width: 700rpx;
   height: 100rpx;
-  /* padding: 35rpx 0; */
 }
+
 .add-img {
   width: 40rpx;
   height: 40rpx;
-  border: 1rpx dotted #000000;
   margin-right: 10rpx;
 }
+
 .add-txt {
   color: #353535;
   font-size: 32rpx;
@@ -186,12 +212,13 @@
   flex: 1;
   text-align: center;
   line-height: 100%;
-  background-color: #D2D2D2;
+  background-color: #ECEEEF;
 }
 .inner-item {
   width: 60rpx;
   height: 60rpx;
 }
+
 .slide-right {
   transition: right 0.3s linear;
 }
@@ -208,38 +235,34 @@
   font-size: 28rpx;
   color: #A3ACBD;
 }
+
 /* 账单详情 */
 .select {
-  bottom: 20rpx;
   left: 25rpx;
   width: 700rpx;
   background-color: #ffffff;
 }
 
-.content {
-  /* width: 730rpx; */
-  /* padding: 10rpx; */
-  /* margin-top: 180rpx; */
-}
 .content-title {
   width: 660rpx;
   height: 100rpx;
   margin: 0 20rpx 10rpx 20rpx;
-  margin-bottom: 10rpx;
-
 }
 .content-date {
   width: 120rpx;
   font-size: 24rpx;
   color: #A5A5A5;
 }
+
 .date-num {
   font-size: 20rpx;
   color: #A5A5A5;
 }
+
 .date-else {
   padding-left: 26rpx;
 }
+
 .content-money {
   max-width: 550rpx;
 }
@@ -261,11 +284,11 @@
   font-size: 28rpx;
   color: #353535;
 }
-.norecord {
-  /* width: 750rpx; */
-  height: 80rpx;
 
+.norecord {
+  height: 80rpx;
 }
+
 /* 添加按钮 */
 .add-btn {
   position: fixed;

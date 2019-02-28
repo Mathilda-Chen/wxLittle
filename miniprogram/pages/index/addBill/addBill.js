@@ -1,9 +1,7 @@
 // pages/index/addBill/addBill.js
 const app = getApp();
 const util = require('../../../utils/dateUtil.js');
-const cate = require('../../../utils/cate.js')
-const env = app.globalData.env;
-const db = wx.cloud.database({ env: env });
+const CATE = require('../../../utils/cate.js')
 
 Page({
 
@@ -11,82 +9,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    scrollHeight: 440,
+    height: app.globalData.statusBarHeight + 88,
+    scrollHeight: app.globalData.clientHeight - app.globalData.statusBarHeight - 88 - 40 - 120 - 82 - 444 - 40 + 5,
     bookid: 0,
     money: "0.00",
     tab: ["支出", "收入"],
-    cate: [],
+    cate: [CATE.INCOME, CATE.OUTCOME],
     cateIndex: 0,
-    num: [7, 8, 9, 4, 5, 6, 1, 2, 3, "清空", 0, "."],
+    num: [7, 8, 9, 4, 5, 6, 1, 2, 3, "清空", 0, ""],
     remarks: "",
-    date: "",
-    dateTimestamp: 0,
     typeIndex: 0,
     scrollTop: 0,
     _id: 0,
-    editPage: false
-    // billInfo: {},
+    editPage: false,
+    pick_date: app.globalData.cur_all_time,
+    date: app.globalData.cur_all_time,
+    edit_date: [],
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getWindowHeight();
-    // console.log(options)
-    // var bookid = "XGu7hN7E7L4wLoPE";
-    // var self = this;
-    // wx.getStorage({
-    //   key: 'userinfo',
-    //   success(res) {
-    //     if (res.data) {
-    //       app.globalData.userinfo = res.data.data[0];
-    //     }
-    //   }
-    // })
-    console.log(options)
-    this.setData({
-      [`cate[0]`]: cate.INCOME,
-      [`cate[1]`]: cate.OUTCOME,
-      dateTimestamp: util.getTime(),
-    })
     if(options.bill){
       var billInfo = JSON.parse(options.bill);
+      var time = billInfo.time;
       this.setData({
         money: billInfo.money,
         remarks: billInfo.remarks,
         typeIndex: billInfo.type,
         cateIndex: billInfo.cate_id,
-        date: billInfo.time.substr(5,11),
+        date: [time.substring(0, 4), time.substring(5, 7), time.substring(8, 10)],
+        edit_date: [time.substring(0, 4), time.substring(5, 7), time.substring(8, 10)],
         editPage: true,
         _id: billInfo._id
       })
-    }else {
-      this.setData({
-        bookid: options.bookid,
-      })
     }
-
-  },
-  // 获取屏幕高度
-  getWindowHeight() {
-    let self = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        let clientWidth = res.windowWidth;
-        let clientHeight = res.windowHeight;
-        let ratio = 750 / clientWidth;
-        let height = clientHeight * ratio;
-        self.setData({
-          scrollHeight: height
-        })
-      },
-    })
-    var time = util.formatDate(util.getTime()).split(" ")[0].substring(5, 11)
-    this.setData({
-      date: time,
-      scrollHeight: this.data.scrollHeight - 82 - 120 - 102 - 404 - 42
-    })
   },
   // 切换栏
   checkTab(e) {
@@ -101,7 +58,6 @@ Page({
   },
   // 选择类别
   selCate(e) {
-    console.log(e)
     var index = e.currentTarget.dataset.index;
     this.setData({
       cateIndex: index
@@ -109,18 +65,24 @@ Page({
   },
   // 输入金额
   inputNum(e) {
-    var num = e.currentTarget.dataset.item,
-     len = this.data.money.length,
+    var index = e.currentTarget.dataset.index;
+    var num = e.currentTarget.dataset.item;
+    if (index == 11) {
+      num = "."
+    } else if (index == 10) {
+      num = 0;
+    }
+    var len = this.data.money.length,
      cur_money = this.data.money == "0.00" ? "" : this.data.money,
      money = `${cur_money}${num}`,
-      dot = JSON.stringify(cur_money).indexOf(".") != -1;
-    if(num == "清空") {
+     dot = JSON.stringify(cur_money).indexOf(".") != -1;
+    if (index == 9 || (cur_money == "" && !num)) {
       this.setData ({
         money: "0.00"
       })
       return;
     }
-    if (len > 20) return;
+    if (len >= 8) return;
     if(dot){
       var dotLen = cur_money.split(".")[1].length;
       if (num == "." || dotLen > 1) return;
@@ -154,11 +116,9 @@ Page({
   },
   // 选择日期
   bindDateChange(e) {
-    var date = e.detail.value;
-    var arr = date.split("-");
+    var date = e.detail.value.split("-");
     this.setData({
-      date: `${arr[1]}月${arr[2]}日`,
-      dateTimestamp: util.changeTime(date)
+      date: date,
     })
   },
   // 保存记录
@@ -175,50 +135,57 @@ Page({
     if(money.substr(-1) == ".") {
       money = money.substring(0, money.length-1)
     }
-    // 存储数据
-    var param = {
-      bookid: this.data.bookid,
-      type: this.data.typeIndex,
-      cate: this.data.cate[this.data.typeIndex][this.data.cateIndex].name,
-      cate_id: this.data.cate[this.data.typeIndex][this.data.cateIndex].cate_id,
-      remarks: this.data.remarks,
-      time: this.data.dateTimestamp,
-      nickName: app.globalData.userinfo.nickName,
-      money: this.data.money
-    }
-    console.log(param)
     if(this.data.editPage) {
-      db.collection('bills').doc(self.data._id).update({
-        data: {
-          type: self.data.typeIndex,
-          cate: self.data.cate[self.data.typeIndex][self.data.cateIndex].name,
-          cate_id: self.data.cate[self.data.typeIndex][self.data.cateIndex].cate_id,
-          remarks: self.data.remarks,
-          time: self.data.dateTimestamp,
-          nickName: app.globalData.userinfo.nickName,
-          money: self.data.money
-        },
-        success(res) {
-          console.log(res.data)
-        }
+      // 修改数据
+      var param = {
+        type: this.data.typeIndex,
+        cate: this.data.cate[this.data.typeIndex][this.data.cateIndex].name,
+        cate_id: this.data.cate[this.data.typeIndex][this.data.cateIndex].cate_id,
+        remarks: this.data.remarks,
+        time: util.changeTime(this.data.date, false, util.getHour()),
+        nickName: app.globalData.userinfo.nickName,
+        money: money,
+        imgUrl: this.data.cate[this.data.typeIndex][this.data.cateIndex].imgUrl
+      };
+      app.editData('bills', self.data._id, param, res => {
+        wx.showToast({
+          title: '修改成功',
+          icon: 'success',
+        })
       })
-
-    }else {
-      db.collection('bills').add({
-        data: param,
-        success: res => {
-          wx.showToast({
-            title: '添加成功',
-            icon: 'success',
-          })
-        },
-        fail: err => {
-          wx.showToast({
-            icon: 'none',
-            title: '添加失败'
-          })
-        }
+    } else { 
+      // 存储数据
+      var param = {
+        bookid: app.globalData.cur_bookid,
+        type: this.data.typeIndex,
+        cate: this.data.cate[this.data.typeIndex][this.data.cateIndex].name,
+        cate_id: this.data.cate[this.data.typeIndex][this.data.cateIndex].cate_id,
+        remarks: this.data.remarks,
+        time: util.changeTime(this.data.date, false, util.getHour()),
+        nickName: app.globalData.userinfo.nickName,
+        money: money,
+        imgUrl: this.data.cate[this.data.typeIndex][this.data.cateIndex].imgUrl
+      }
+      app.addData('bills', param, res => {
+        wx.showToast({
+          title: '添加成功',
+          icon: 'success',
+        })
       })
+    }
+    var index_date = app.globalData.index_date; //首页时间
+    var count_date = app.globalData.count_date; //图标页时间
+    var edit_date = this.data.edit_date; //编辑前 （string）
+    var add_date = this.data.date; //编辑或添加最后时间（string）
+    let event_1 = count_date[0] == edit_date[0] && count_date[1] == edit_date[1]; //编辑前时间与图表相同
+    let event_2 = count_date[0] == add_date[0] && count_date[1] == add_date[1]; //编辑后时间与图表相同
+    let event_3 = index_date[0] == edit_date[0] && index_date[1] == edit_date[1]; //编辑前时间与首页相同
+    let event_4 = index_date[0] == add_date[0] && index_date[1] == add_date[1]; //编辑后时间与首页相同
+    if (event_3 || event_4) {
+      app.globalData.indexFlag = true;
+    }
+    if (event_1 || event_2) {
+      app.globalData.countFlag = true;
     }
     wx.navigateBack()
   },

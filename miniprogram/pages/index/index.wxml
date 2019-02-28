@@ -1,52 +1,98 @@
 <!--pages/index/index.wxml-->
+<wxs module="util">
+  var sub = function(val) {
+    return val.substring(5, 11)
+  }
+  module.exports.sub = sub;
+</wxs>
 <view class="rel top">
   <image class="top" src="../../images/home_top_bg@2x.png"></image>
   <view class="abs info">
-    <view class="row justify nav" style="padding-top:{{statusBarHeight}}px">
-      <text class="nav-title">记账</text> 
+    <view class="row justify nav" style="padding-top:{{statusBarHeight}}rpx">
+      <text class="nav-title">我的账单</text> 
     </view>
     <!-- 添加账本 --> 
-    <view class="row center info-title" bindtap="toShowBooks">
+    <view class="row info-title" bindtap="toShowBooks">
       <view class="row center title-con">
-        <text class="title-txt">{{cur_book.bookname}}</text>
-        <image class="title-img" src="../../images/icon_triangle@2x.png"></image>
+        <text class="title-txt">{{cur_book.bookname || "添加账本"}}</text>
+        <image class="title-img" src="/images/icon_triangle@2x.png" wx:if="{{cur_book.bookname}}"></image>
       </view>
     </view>
     <!-- 详情 -->
     <view class="row info-detail">
-      <view class="">
-        <picker
-          mode="date"
-          value="{{date}}"
-          start="1997-09-01"
-          end="2019-09-01"
-          bindchange="bindDateChange"
-        >
-          <view class="column center rel detail-date">
-            <view class="date-year">
-              <text class="white-28">2019年</text>
-            </view>
-            <view class="date-day">
-              <text class="white-36">2月</text>
-              <image class="title-img" src="../../images/icon_triangle@2x.png"></image>
-            </view>
+      <picker
+        mode="date"
+        value="{{date[0]}}-{{date[1]}}"
+        start="1997-09-01"
+        end="{{pick_date[0]}}-{{pick_date[1]}}"
+        fields="month"
+        bindchange="bindDateChange"
+      >
+        <view class="column rel detail-date">
+          <view class="row center date-year">
+            <text class="white-28">{{date[0]}}年</text>
           </view>
-          <text class="row justify mini-dark data-txt">{{date}}</text>
-        </picker>
-      </view>
+          <view class="date-day">
+            <text class="white-36">{{date[1]}}月</text>
+            <image class="title-img" src="/images/icon_triangle@2x.png"></image>
+          </view>
+        </view>
+      </picker>
       <text class="rel line"></text>
       <view class="column rel detail-else">
         <text class="white-30">结余</text>
-        <text class="white-44">49970.00</text>
+        <text class="else-text white-44 line-1">{{allBalance}}</text>
       </view>
       <view class="column">
-        <text class="white-28 detail-num">收入： 50000.00</text>
-        <text class="white-28">支出： 30.00</text>
+        <text class="white-28 detail-num line-1">收入： {{allIncome}}</text>
+        <text class="outcome-text white-28 line-1">支出： {{allOutcome}}</text>
       </view>
     </view>
     <!-- 横线 -->
     <view class="tan"></view>
   </view>
+  <!-- 账单详情 -->
+  <scroll-view class="abs select" scroll-y="true" style="height:{{scrollHeight}}rpx;top: {{scrollTop}}rpx" bindscroll="bindScroll" bindscrolltolower="loadMore">
+    <view class="content" wx:if="{{hasCon}}" style="width: 700rpx">
+      <view wx:for="{{bills}}" wx:key="" bindtouchstart="touchStartBills" data-index="{{index}}">
+        <view class="row between btm-line content-title">
+          <text class="content-date">{{util.sub(item.time)}}</text>
+          <view class="row center normal-darkcontent-money">
+            <text class="date-num">收入：{{item.income}}</text>
+            <text class="date-num date-else">支出：{{item.outcome}}</text>
+          </view>
+        </view>
+        <view class="rel row between record {{item.right == 0 ? 'slide-right':'slide-left'}}" style="right:{{item.right}}rpx"
+            wx:for="{{item.bill}}" wx:key="" data-index="{{index}}" data-item="{{item}}"
+            catchtap="toEdit" bindtouchstart="touchStartBill" bindtouchmove="touchMoveBill" bindtouchend="touchEndBill"
+        >
+          <view class="row justify">
+            <image class="icon" src="/images/icon/{{item.imgUrl}}_2@2x.png"></image>
+            <text class="money">{{item.cate}}</text>
+          </view>
+          <view>
+            <text class="money">{{item.type?"+":"-"}}</text>
+            <text class="money">{{item.money}}</text>
+          </view>
+          <view class="row abs slide-btn">
+            <view class="slide-item row justify" catchtap="toEdit" data-item="{{item}}" data-index="{{index}}">
+              <image class="inner-item" src="../../images/list_icon_edit@2x.png"></image>
+            </view>
+            <view class="slide-item row justify" catchtap="toDelBill" data-item="{{item}}" data-index="{{index}}">
+              <image class="inner-item" src="../../images/list_icon_delete@2x.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- <text class="row justify normal-dark norecord">没有更多记录了~</text> -->
+    </view>
+    <view class="row justify bill-none" wx:if="{{!hasCon && hasBook}}">
+      <text class="none-txt">点击“+”号，开始第一笔记账吧</text>
+    </view>
+    <view class="row justify bill-none" wx:if="{{!hasBook}}">
+      <text class="none-txt">创建一个账本吧</text>
+    </view>
+  </scroll-view>
 </view>
 
 <!-- 账本选择/添加 -->
@@ -68,7 +114,7 @@
         <view class="slide-item row justify" catchtap="toRename" data-item="{{item}}" data-index="{{index}}">
           <image class="inner-item" src="../../images/list_icon_edit@2x.png"></image>
         </view>
-        <view class="slide-item row justify" catchtap="toDel" data-item="{{item}}">
+        <view class="slide-item row justify" catchtap="toDel" data-item="{{item}}" data-index="{{index}}">
           <image class="inner-item" src="../../images/list_icon_delete@2x.png"></image>
         </view>
       </view>
@@ -84,44 +130,6 @@
   <input type="text" placeholder="请输入名称" maxlength="20" value="{{rename}}" bindinput="inputConfirm" focus="true" cursor-spacing="10px"/>
 </modal>
 
-<!-- 账单详情 -->
-<scroll-view class="abs select" scroll-y="true" style="height:{{scrollHeight}}rpx" bindscroll="bindScroll" bindscrolltolower="loadMore">
-  <view class="content" wx:if="{{hasCon}}">
-    <view wx:for="{{bills}}" wx:key="" bindtouchstart="touchStartBills" data-index="{{index}}">
-      <view class="row between btm-line content-title">
-        <text class="content-date">{{item.date}}</text>
-        <view class="row center normal-darkcontent-money">
-          <text class="date-num">收入：{{item.income}}</text>
-          <text class="date-num date-else">支出：{{item.outcome}}</text>
-        </view>
-      </view>
-      <view class="rel row between record {{item.right == 0 ? 'slide-right':'slide-left'}}" style="right:{{item.right}}rpx"
-          wx:for="{{item.bill}}" wx:key="" data-index="{{index}}" data-item="{{item}}"
-          bindtouchstart="touchStartBill" bindtouchmove="touchMoveBill" bindtouchend="touchEndBill"
-      >
-        <view class="row justify">
-          <image class="icon"></image>
-          <text class="money">{{item.cate}}</text>
-        </view>
-        <view>
-          <text class="money">{{item.type?"+":"-"}}</text>
-          <text class="money">{{item.money}}</text>
-        </view>
-        <view class="row abs slide-btn">
-          <view class="slide-item row justify" catchtap="toEdit" data-item="{{item}}" data-index="{{index}}">
-            <image class="inner-item" src="../../images/list_icon_edit@2x.png"></image>
-          </view>
-          <view class="slide-item row justify" catchtap="toDelBill" data-item="{{item}}">
-            <image class="inner-item" src="../../images/list_icon_delete@2x.png"></image>
-          </view>
-        </view>
-      </view>
-    </view>
-    <!-- <text class="row justify normal-dark norecord">没有更多记录了~</text> -->
-  </view>
-  <view class="row justify bill-none" wx:if="{{!hasCon}}">
-    <text class="none-txt">点击“+”号，开始第一笔记账吧</text>
-  </view>
-</scroll-view>
-<!-- 添加 -->
-<image class="add-btn" src="../../images/home_icon_add@2x.png" bindtap="toAddBill"></image>
+<!-- 添加  -->
+<image class="add-btn" src="../../images/home_icon_add@2x.png" bindtap="toAddBill" 
+      wx:if="{{ hasBook && noScroll }}"></image>

@@ -1,54 +1,64 @@
 <!--pages/index/billDetail/billDetail.wxml-->
-<!-- 切换栏 -->
-<view class="row center btm-line tab">
-  <text class="normal-dark tab-item {{index == typeIndex ? 'bg-pink': ''}}"
-        bindtap="checkTab" wx:for="{{tab}}" wx:key="" data-index="{{index}}">{{item}}</text>
-  <!-- <text class="normal-dark tab-item {{index == 1 ? 'bg-pink': ''}}">支出</text> -->
-</view>
-<!-- 输入框 -->
-<view class="row between bg-white content">
-  <view class="row center content-cate">
-    <image class="cate-img"></image>
-    <text class="cate-txt normal-dark pl-20">{{cate[typeIndex][cateIndex].name}}</text>
-  </view>
-  <text class="normal-dark content-money" maxlength="6">{{money}}</text>
-</view>
-<!-- 类别选择 -->
-<scroll-view class="select" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}rpx">
-  <view class="row select-box">
-    <view class="column center icon {{index == cateIndex ? 'bg-pink': ''}}"
-          bindtap="selCate" wx:for="{{cate[typeIndex]}}" wx:key="" data-index="{{index}}">
-      <image class="cate-img"></image>
-      <text class="mini-dark">{{item.name}}</text>
+<view>
+  <nav-bar is-show-back="true" inner-title="记一笔"></nav-bar>
+  <view style="padding-top: {{height}}rpx">
+    <!-- 切换栏 -->
+    <view class="row tab">
+      <view class="row center tab-box">
+        <text class="tab-item {{index == typeIndex && index == 0 ? 'active-tab tab-left': ''}} {{index == typeIndex && index == 1 ? 'active-tab tab-right': ''}}"
+          bindtap="checkTab" wx:for="{{tab}}" wx:key="" data-index="{{index}}">{{item}}</text>
+      </view>
     </view>
-  </view>
-</scroll-view>
-<!-- 备注 -->
-<view class="row center btm-line bg-white remarks">
-  <text class="normal-dark pr-20">备注:</text>
-  <input class="normal-dark" placeholder="请输入备注" value="{{remarks}}" bindinput="bindRemarks"></input>
-</view>
-<!-- 自定义键盘 -->
-<view class="row bg-white keyboard">
-  <view class="row left">
-    <view class="row justify left-item {{index>8 ? '' : 'btm-line'}}" 
-          wx:for="{{num}}" wx:key="" data-item="{{item}}" bindtap="inputNum">
-      <text class="normal-dark">{{item}}</text>
+    <!-- 输入框 -->
+    <view class="row between bg-white content">
+      <view class="row center">
+        <image class="cate-img" src="/images/icon/{{cate[typeIndex][cateIndex].imgUrl}}_2@2x.png" wx:if='{{cate[typeIndex][cateIndex].imgUrl}}'></image>
+        <text class="cate-txt">{{cate[typeIndex][cateIndex].name}}</text>
+      </view>
+      <text class="content-money" maxlength="6">{{money}}</text>
     </view>
-  </view>
-  <view class="column right">
-    <view class="row justify right-date">
-      <picker
-        mode="date"
-        value="{{date}}"
-        start="1997-09-01"
-        end="2019-09-01"
-        bindchange="bindDateChange"
-      >
-        <text class="row justify mini-dark data-txt">{{date}}</text>
-      </picker>
+    <!-- 类别选择 -->
+    <scroll-view class="select" scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}rpx">
+      <view class="row select-box">
+        <view class="column center  {{(index+1)%5 == 0? '':'icon'}}"
+              bindtap="selCate" wx:for="{{cate[typeIndex]}}" wx:key="" data-index="{{index}}">
+          <image class="cates-img" wx:if="{{index == cateIndex}}" src="/images/icon/{{item.imgUrl}}_2@2x.png"></image>
+          <image class="cates-img" wx:if="{{index != cateIndex}}" src="/images/icon/{{item.imgUrl}}_1@2x.png"></image>
+          <text class="cates-name {{index == cateIndex ? 'active-cate': ''}}">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- 备注 -->
+    <view class="row center bg-white remarks">
+      <text class="remarks-txt">备注:</text>
+      <input class="remarks-con" placeholder="请输入备注" placeholder-class="remarks-con" value="{{remarks}}" bindinput="bindRemarks"></input>
     </view>
-    <text class="row justify normal-dark right-del" bindtap="numDel">X</text>
-    <text class="row justify normal-dark right-confirm" bindtap="toSave">确定</text>
+    <!-- 自定义键盘 -->
+    <view class="row bg-white keyboard">
+      <view class="row left">
+        <view class="row justify left-item {{index>9 ? '' : 'btm-line'}}  {{(index+1)%3 == 0?'':'right-line'}}"
+              wx:for="{{num}}" wx:key="" data-index="{{index}}" data-item="{{item}}" bindtap="inputNum">
+          <text class="key-num {{index == 9 ? 'del-all' : ''}}">{{item}}</text>
+          <text class="key-dot" wx:if="{{index == 11}}"></text>
+        </view>
+      </view>
+      <view class="column right">
+        <view class="row justify right-date">
+          <picker
+            mode="date"
+            value="{{date[0]}}-{{date[1]}}-{{date[2]}}"
+            start="1997-09-01"
+            end="{{pick_date[0]}}-{{pick_date[1]}}-{{pick_date[2]}}"
+            bindchange="bindDateChange"
+          >
+            <text class="row justify mini-dark data-txt">{{date[1]}}月{{date[2]}}日</text>
+          </picker>
+        </view>
+        <view class="row justify right-del" bindtap="numDel">
+          <image class="del-img" src="../../../images/key_icon_delete@2x.png"></image>
+        </view>
+        <text class="row justify right-confirm" bindtap="toSave">确定</text>
+      </view>
+    </view>
   </view>
 </view>

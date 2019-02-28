@@ -1,2 +1,40 @@
 <!--pages/count/count.wxml-->
-<text>pages/count/count.wxml</text>
+<view>
+  <nav-bar is-show-back="false" inner-title="图表统计"></nav-bar>
+  <view style="padding-top: {{height}}rpx">
+    <view class="column detail">
+      <view class="detail-time">
+        <picker
+          mode="date"
+          value="{{date[0]}}-{{date[1]}}"
+          start="1997-09-01"
+          end="{{pick_date[0]}}-{{pick_date[1]}}"
+          fields="month"
+          bindchange="bindDateChange"
+        >
+          <view class="row center rel detail-date">
+              <text class="white-34">{{date[0]}}年{{date[1]}}月</text>
+              <image class="title-img" src="/images/icon_triangle@2x.png"></image>
+          </view>
+        </picker>
+      </view>
+      <view class="row center detail-con">
+        <view class="column justify con bor-right">
+          <text class="white-30">收入</text>
+          <text class="con-num line-1 white-44">{{allIncome}}</text>
+        </view>
+        <view class="column justify con bor-right">
+          <text class="white-30">支出</text>
+          <text class="con-num line-1 white-44">{{allOutcome}}</text>
+        </view>
+        <view class="column justify con">
+          <text class="white-30">结余</text>
+          <text class="con-num line-1 white-44">{{allBalance}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+<view class="container">
+    <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+</view>
+</view>

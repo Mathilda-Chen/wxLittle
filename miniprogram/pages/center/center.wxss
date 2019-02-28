@@ -1,20 +1,34 @@
 /* pages/center/center.wxss */
 @import "../../style/common.wxss";
+page {
+  background-color: #ffffff;
+}
+
+.bg {
+  width: 750rpx;
+  height: 400rpx;
+  margin-bottom: 40rpx;
+}
 
 .user {
+  top: 0;
+  left: 0;
   width: 750rpx;
-  height: 300rpx;
+  height: 400rpx;
 }
 
 .user-img { 
-  width: 200rpx;
-  height: 200rpx;
-  background-color: yellow;
-  border-radius: 100rpx;
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #cccccc;
+  border-radius: 160rpx;
+  margin-top: 80rpx;
 }
 
 .user-name {
-  padding: 20rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  padding: 19rpx;
 }
 
 .else {
@@ -22,14 +36,38 @@
 }
 
 .else-item {
-  width: 360rpx;
-  height: 200rpx;
-  border: 1rpx solid #cccccc;
+  width: 340rpx;
+  height: 160rpx;
+  border: 2rpx solid #E3E3E3;
+  border-radius: 20rpx;
+}
+
+.else-img {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 16rpx;
+}
+
+.else-txt {
+  color: #353535;
+  font-size: 30rpx;
+}
+
+.btn {
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 340rpx;
+  height: 160rpx;
+}
+
+.btn::after {
+  border: 0;
 }
 
 .adv {
-  width: 730rpx;
-  height: 200rpx;
-  background-color: orange;
-  margin: 30rpx 10rpx;
+  width: 700rpx;
+  height: 240rpx;
+  background-color: #eeeeee;
+  margin: 25rpx 20rpx;
 }
